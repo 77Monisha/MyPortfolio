@@ -20,38 +20,8 @@ import {
 import { Bot, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import Image from "next/image";
 import Link from "next/link";
-import { HexagonBackground } from "@/components/animate-ui/components/backgrounds/hexagon";
 import { ShareButton } from "@/components/animate-ui/components/community/share-button";
-
-// function MockUI({ rows = 3 }) {
-//   const widths = ["w-4/5", "w-3/5", "w-2/5", "w-4/5", "w-1/2"];
-//   const colors = [
-//     "bg-white/5",
-//     "bg-white/5",
-//     "bg-amber-400/15",
-//     "bg-white/5",
-//     "bg-white/5",
-//   ];
-//   return (
-//     <div className="mt-5 rounded-xl bg-[#141417] border border-white/10 overflow-hidden">
-//       <div className="h-9 bg-white/5 border-b border-white/10 flex items-center px-3.5 gap-1.5">
-//         <span className="w-2 h-2 rounded-full bg-[#ff5f57]" />
-//         <span className="w-2 h-2 rounded-full bg-[#ffbd2e]" />
-//         <span className="w-2 h-2 rounded-full bg-[#28c840]" />
-//       </div>
-//       <div className="p-4 flex flex-col gap-2">
-//         {Array.from({ length: rows }).map((_, i) => (
-//           <div
-//             key={i}
-//             className={`h-2 rounded-full ${widths[i]} ${colors[i]}`}
-//           />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
 
 function BentoCard({
   icon,
@@ -295,50 +265,30 @@ performance-optimized media rendering, ensuring scalable UI architecture and smo
       <section className="relative z-10 pb-28 max-w-5xl mx-auto px-6">
         <div className="relative border border-amber-400/20 rounded-3xl px-16 py-20 bg-linear-to-br from-amber-400/5 to-transparent text-center overflow-hidden">
           <StarsBackgroundDemo />
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-48 rounded-full bg-[radial-gradient(ellipse,rgba(251,191,36,0.1)_0%,transparent_70%)] pointer-events-none" />
-          <h2 className="font-serif relative z-10 text-4xl md:text-5xl leading-tight tracking-tight mb-4">
-            <GrayTitle>Your next interview</GrayTitle>
-            <br />
-            <GoldTitle>starts here</GoldTitle>
-          </h2>
-          <div className="relative z-10 flex flex-wrap justify-center gap-4">
-            <Button variant="gold" size="hero">
-              Get started free →
-            </Button>
-            <Button variant="outline" size="hero">
-              Become an interviewer
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative z-10 pb-28 max-w-5xl mx-auto px-6">
-        <div className="relative border border-amber-400/20 rounded-3xl px-16 py-20 bg-linear-to-br from-amber-400/5 to-transparent text-center overflow-hidden">
-          <StarsBackgroundDemo />
 
           <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-48 rounded-full bg-[radial-gradient(ellipse,rgba(251,191,36,0.1)_0%,transparent_70%)] pointer-events-none" />
 
-          {/* HEADING */}
           <h2 className="font-serif relative z-10 text-4xl md:text-5xl leading-tight tracking-tight mb-4">
             <GrayTitle>Let’s build something</GrayTitle>
             <br />
             <GoldTitle>impactful together</GoldTitle>
           </h2>
 
-          {/* SUBTEXT */}
           <p className="text-stone-400 text-sm mb-8 relative z-10">
             Open to frontend roles, remote opportunities, and high-impact teams.
           </p>
 
-          {/* CTA */}
           <div className="relative z-10 flex flex-wrap justify-center gap-4">
             <Button variant="gold" size="hero">
               View Resume
             </Button>
-            <Button variant="outline" size="hero">
-              Contact Me →
-            </Button>
-            <ShareButton />
+            <ShareButton
+              size="lg"
+              icon="suffix"
+              className="text-white inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 px-8 py-5.5 text-base rounded-xl"
+            >
+              Contact Me
+            </ShareButton>
           </div>
         </div>
       </section>
