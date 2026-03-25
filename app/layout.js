@@ -2,7 +2,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import Header from "@/components/header";
 import { DM_Sans, Lora } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 
 const lora = Lora({
@@ -25,28 +24,22 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider
-      appearance={{
-        theme: dark,
-      }}
-    >
-      <html lang="en" suppressHydrationWarning>
-        <head />
-        <body className={`${lora.variable} ${dmSans.variable} font-sans`}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Header />
-            {children}
-            {/* <footer className="relative z-10 border-t border-white/7 py-12  mx-auto px-6 flex flex-wrap items-center justify-center text-stone-400">
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body className={`${lora.variable} ${dmSans.variable} font-sans`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          {children}
+          {/* <footer className="relative z-10 border-t border-white/7 py-12  mx-auto px-6 flex flex-wrap items-center justify-center text-stone-400">
               Made with ❤️ by RoadsideCoder
             </footer> */}
-          </ThemeProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }
