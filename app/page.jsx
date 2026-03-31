@@ -79,7 +79,9 @@ export default function LandingPage() {
         <StarsBackgroundDemo />
 
         <div className="-rotate-2 col-span-3 flex flex-col gap-5 items-center justify-center text-center">
-          <Badge variant="gold">Frontend Engineer • 2.8 Years Experience</Badge>
+          <Badge variant="gold">
+            Open to Software Engineer roles • EU relocation • Remote
+          </Badge>
 
           <h1 className="font-serif relative z-10 text-5xl md:text-6xl lg:text-6xl leading-tight tracking-tighter max-w-4xl">
             <GrayTitle>Building scalable frontend</GrayTitle>
@@ -94,13 +96,17 @@ export default function LandingPage() {
           </p>
 
           <div className="relative z-10 flex flex-wrap items-center justify-center gap-4 mt-10">
-            <Button variant="gold" size="hero">
-              View Projects
-            </Button>
+            <a href="#projects">
+              <Button variant="gold" size="hero">
+                View Projects
+              </Button>
+            </a>
 
-            <Button variant="outline" size="hero">
-              Contact Me →
-            </Button>
+            <a href="#contact">
+              <Button variant="outline" size="hero">
+                Contact Me →
+              </Button>
+            </a>
           </div>
         </div>
 
@@ -110,7 +116,10 @@ export default function LandingPage() {
       </section>
 
       {/* ── PROFESSIONAL EXPERIENCE ── */}
-      <section className="relative z-10 max-w-5xl mx-auto px-6 mt-28">
+      <section
+        className="relative z-10 max-w-5xl mx-auto px-6 mt-28"
+        id="experience"
+      >
         <div className="text-center mb-16">
           <SectionLabel>Professional Experience</SectionLabel>
           <SectionHeading
@@ -160,7 +169,7 @@ export default function LandingPage() {
 
       {/* ── PERSONAL PROJECTS ── */}
       <section
-        id="Features"
+        id="projects"
         className="relative z-10 mt-28 max-w-5xl mx-auto px-6"
       >
         <div className="text-center mb-16">
@@ -224,7 +233,7 @@ performance-optimized media rendering, ensuring scalable UI architecture and smo
       </section>
 
       {/* ── SKILLS ── */}
-      <section className="relative max-w-4xl mx-auto py-14 my-28">
+      <section className="relative max-w-4xl mx-auto py-14 my-28" id="skills">
         <div className="text-center mb-16">
           <SectionHeading gray="Skills & " gold="Technologies" />
         </div>
@@ -262,7 +271,10 @@ performance-optimized media rendering, ensuring scalable UI architecture and smo
       </section>
 
       {/* ── CONTACT ── */}
-      <section className="relative z-10 pb-28 max-w-5xl mx-auto px-6">
+      <section
+        className="relative z-10 pb-28 max-w-5xl mx-auto px-6"
+        id="contact"
+      >
         <div className="relative border border-amber-400/20 rounded-3xl px-16 py-20 bg-linear-to-br from-amber-400/5 to-transparent text-center overflow-hidden">
           <StarsBackgroundDemo />
 

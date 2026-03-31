@@ -88,7 +88,7 @@ function ShareButton({
   );
 }
 
-const shareIconGroupVariants = cva("flex items-center justify-center gap-8", {
+const shareIconGroupVariants = cva("flex items-center justify-center gap-10", {
   variants: {
     size: {
       default: "text-[16px]",
