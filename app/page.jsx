@@ -11,20 +11,14 @@ import {
   ROLES,
   SKILLS,
 } from "@/lib/data";
-import {
-  GoldTitle,
-  GrayTitle,
-  SectionHeading,
-  SectionLabel,
-} from "@/components/reusables";
-import { Bot, Wallet } from "lucide-react";
+import { GoldTitle, GrayTitle, SectionHeading } from "@/components/reusables";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { ShareButton } from "@/components/animate-ui/components/community/share-button";
+import { highlightText } from "@/lib/utils";
 
 function BentoCard({
-  icon,
   title,
   desc,
   children,
@@ -35,16 +29,22 @@ function BentoCard({
 }) {
   return (
     <div
-      className={`relative bg-[#0f0f11] border border-white/10 hover:border-amber-400/20 rounded-2xl p-9 h-full transition-all duration-300 hover:-translate-y-0.5 overflow-hidden flex flex-col justify-between ${className}`}
+      className={`relative bg-[#0f0f11] border border-white/10 hover:border-amber-400/20 rounded-2xl p-9 h-full transition-all duration-300 hover:-translate-y-0.5 overflow-hidden flex flex-col justify-between ${className} hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(251,191,36,0.08)]
+transition-all duration-300`}
     >
       <div className="absolute inset-0 bg-linear-to-br from-amber-400/5 via-transparent to-transparent pointer-events-none" />
-      <span className="w-11 h-11 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-xl mb-5">
-        {icon}
-      </span>
       <h3 className="font-serif text-xl tracking-tight mb-2">{title}</h3>
-      <p className="text-sm text-stone-400 font-light leading-relaxed">
-        {desc}
-      </p>
+      <ul className="space-y-2">
+        {desc.map((point, i) => (
+          <li
+            className="flex items-start gap-2 text-sm text-stone-400 leading-relaxed"
+            key={i}
+          >
+            <span className="mt-1 w-1.5 h-1.5 rounded-full bg-amber-400" />
+            <div className="flex-1">{highlightText(point)}</div>
+          </li>
+        ))}
+      </ul>
       {children}
 
       <div className="flex flex-wrap gap-2 mt-5">
@@ -56,12 +56,12 @@ function BentoCard({
         ))}
       </div>
       <div className="flex flex-row justify-between items-end mt-4">
-        <Link href={link}>
+        <Link href={link} target="_blank" rel="noopener noreferrer">
           <Button className="cursor-pointer bg-linear-to-br from-stone-100 via-stone-300 to-stone-500 font-semibold">
             Live Link
           </Button>
         </Link>
-        <Link href={source}>
+        <Link href={source} target="_blank" rel="noopener noreferrer">
           <Button className="cursor-pointer bg-linear-to-br from-stone-100 via-stone-300 to-stone-500 font-semibold">
             Github
           </Button>
@@ -86,7 +86,7 @@ export default function LandingPage() {
           <h1 className="font-serif relative z-10 text-5xl md:text-6xl lg:text-6xl leading-tight tracking-tighter max-w-4xl">
             <GrayTitle>Building scalable frontend</GrayTitle>
             <br />
-            <GoldTitle>systems for real-world performance</GoldTitle>
+            <GoldTitle>systems for real-world products</GoldTitle>
           </h1>
 
           <p className="relative z-10 text-base md:text-lg text-stone-400 font-light max-w-xl mt-6 leading-relaxed">
@@ -121,11 +121,7 @@ export default function LandingPage() {
         id="experience"
       >
         <div className="text-center mb-16">
-          <SectionLabel>Professional Experience</SectionLabel>
-          <SectionHeading
-            gray="Production-grade systems built for scale,"
-            gold="performance, and real users"
-          />
+          <SectionHeading gray="Professional" gold="Experience" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -134,34 +130,63 @@ export default function LandingPage() {
               key={role.label}
               className="relative bg-[#0f0f11] border border-white/10 hover:border-amber-400/20 rounded-2xl p-12 h-full transition-all duration-300 hover:-translate-y-1 overflow-hidden"
             >
+              {/* subtle glow */}
               <div className="absolute bottom-0 right-0 w-48 h-48 rounded-full bg-[radial-gradient(circle,rgba(251,191,36,0.05)_0%,transparent_70%)] pointer-events-none" />
+
+              {/* header */}
               <div className="flex flex-row justify-between items-center mb-5">
-                <span className="inline-block text-xs font-semibold text-amber-400 tracking-widest uppercase border border-amber-400/20 bg-amber-400/10 rounded-full px-3 py-1.5 ">
+                <span className="text-xs font-semibold text-amber-400 tracking-widest uppercase border border-amber-400/20 bg-amber-400/10 rounded-full px-3 py-1.5">
                   {role.label}
                 </span>
-                <span className="inline-block text-xs font-semibold text-white tracking-widest uppercase ">
+                <span className="text-xs font-semibold text-white tracking-widest uppercase">
                   {role.timeline}
                 </span>
               </div>
-              <h3 className="font-serif text-2xl tracking-tight mb-4">
+
+              {/* role */}
+              <h3 className="font-serif text-2xl tracking-tight mb-6">
                 {role.role}
               </h3>
-              <p className="text-sm text-stone-400 font-light leading-relaxed mb-8">
-                {role.desc}
+
+              {/* section label */}
+              <p className="text-xs tracking-widest text-amber-400 uppercase mb-6">
+                My Contributions
               </p>
-              <ul className="space-y-3">
-                {role.perks.map((p) => (
-                  <li
-                    key={p}
-                    className="flex items-start gap-3 text-sm text-stone-400"
-                  >
-                    <span className="mt-0.5 min-w-4 h-4 rounded-full bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-xs text-amber-400">
-                      ✓
-                    </span>
-                    {p}
-                  </li>
+
+              {/* projects */}
+              <div className="space-y-8">
+                {role.projects.map((project) => (
+                  <div key={project.name}>
+                    {/* project title */}
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-base font-semibold text-white mb-2"
+                    >
+                      <span className="cursor-pointer">{project.name}</span>
+                    </a>
+
+                    {/* highlights */}
+                    <ul className="space-y-2 mt-2">
+                      {project.highlights.map((point) => (
+                        <li
+                          key={point}
+                          className="flex items-start gap-3 text-sm text-stone-400"
+                        >
+                          <span className="mt-0.5 min-w-4 h-4 rounded-full bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-xs text-amber-400">
+                            ✓
+                          </span>
+
+                          <div className="leading-relaxed">
+                            {highlightText(point)}
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           ))}
         </div>
@@ -173,23 +198,18 @@ export default function LandingPage() {
         className="relative z-10 mt-28 max-w-5xl mx-auto px-6"
       >
         <div className="text-center mb-16">
-          <SectionLabel>Selected Projects</SectionLabel>
-          <SectionHeading
-            gray="Independent projects focused on performance, real-time systems, and "
-            gold="solving practical problems with scalable architecture."
-          />
+          <SectionHeading gray="My" gold="Projects" />
         </div>
 
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-12 md:col-span-7">
             <BentoCard
-              icon={<Bot size={20} className="text-amber-400" />}
               title={
-                <GrayTitle>
+                <GoldTitle>
                   PingPrice – Real-Time Price Monitoring System
-                </GrayTitle>
+                </GoldTitle>
               }
-              desc="PricePing is your intelligent price monitoring assistant. Track products in real time, set custom target prices, receive instant email alerts, monitor size-specific availability, and explore historical price trends — so you can purchase at the perfect moment."
+              desc={PingPrice.desc}
               link={PingPrice.live}
               source={PingPrice.github}
               tech={PingPrice.tech}
@@ -198,12 +218,10 @@ export default function LandingPage() {
 
           <div className="col-span-12 md:col-span-5">
             <BentoCard
-              icon={<Wallet size={16} className="text-amber-400" />}
               title={
                 <GrayTitle>Mosh Media : Video Streaming Platform</GrayTitle>
               }
-              desc="Developed a responsive video streaming platform using modular React components with
-performance-optimized media rendering, ensuring scalable UI architecture and smooth playback."
+              desc={MoshMedia.desc}
               link={MoshMedia.live}
               source={MoshMedia.github}
               tech={MoshMedia.tech}
@@ -211,9 +229,8 @@ performance-optimized media rendering, ensuring scalable UI architecture and smo
           </div>
           <div className="col-span-12 md:col-span-6">
             <BentoCard
-              icon="🗓️"
-              title={<GoldTitle>HooBank </GoldTitle>}
-              desc="HooBank is the highly responsive website with modern UX/UI in React JS and Tailwind with amazing opening section and high quality gradient, having business stats, buttons , testimonials and reusable components."
+              title={<GrayTitle>HooBank </GrayTitle>}
+              desc={HooBank.desc}
               link={HooBank.live}
               source={HooBank.github}
               tech={HooBank.tech}
@@ -221,12 +238,11 @@ performance-optimized media rendering, ensuring scalable UI architecture and smo
           </div>
           <div className="col-span-12 md:col-span-6">
             <BentoCard
-              icon="📊"
-              title={<GrayTitle>Website Accessibility Analyser</GrayTitle>}
-              desc="Post-interview analysis by Gemini. Covers communication, technical depth, problem-solving, and a clear hiring recommendation with action items."
-              link={PingPrice.live}
-              source={PingPrice.github}
-              tech={PingPrice.tech}
+              title={<GoldTitle>Website Accessibility Analyser</GoldTitle>}
+              desc={Accessibility.desc}
+              link={Accessibility.live}
+              source={Accessibility.github}
+              tech={Accessibility.tech}
             ></BentoCard>
           </div>
         </div>

@@ -53,18 +53,6 @@ const monisha = {
     optimization: "Improved performance, SEO, and accessibility scores",
     reliability: "Reduced duplicate transactions by 35% using validation systems"
   },
-
-  projects: [
-    "PingPrice – Real-time price tracking with alerts & cron jobs",
-    "Mosh Media – Scalable video streaming platform",
-  ],
-
-  focus: [
-    "Building scalable frontend architecture",
-    "Performance-first engineering",
-    "Real-time systems & data handling",
-    "Clean UI systems & developer experience"
-  ]
 };
 
 export default monisha;
