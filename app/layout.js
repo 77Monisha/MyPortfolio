@@ -1,8 +1,6 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
-import Header from "@/components/header";
 import { DM_Sans, Lora } from "next/font/google";
-import { dark } from "@clerk/themes";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -33,7 +31,6 @@ export default function RootLayout({ children }) {
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
           {children}
         </ThemeProvider>
       </body>
