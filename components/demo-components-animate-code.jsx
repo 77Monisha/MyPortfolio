@@ -62,6 +62,7 @@ export default monisha;
 
       <CodeBlock
         cursor={cursor}
+        className="text-[2px] md:text-sm leading-relaxed no-scrollbar"
         lang="jsx"
         writing={writing}
         duration={duration}
