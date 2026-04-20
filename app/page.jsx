@@ -251,10 +251,10 @@ export default function LandingPage() {
             </div>
             <div className="col-span-12 md:col-span-6">
               <BentoCard
-                title={<GoldTitle>Website Accessibility Analyser</GoldTitle>}
+                title={<GoldTitle>FixMyTree</GoldTitle>}
                 desc={Accessibility.desc}
-                // link={Accessibility.live}
-                // source={Accessibility.github}
+                link={Accessibility.live}
+                source={Accessibility.github}
                 tech={Accessibility.tech}
               ></BentoCard>
             </div>
