@@ -16,8 +16,9 @@ const dmSans = DM_Sans({
 });
 
 export const metadata = {
-  title: "Monisha Chaurasia Portfolio",
-  description: "",
+  title: "Monisha Chaurasia | Software Engineer Portfolio",
+  description:
+    "Mid-level software engineer building scalable, accessible, and AI-powered web applications.",
 };
 
 export default function RootLayout({ children }) {
