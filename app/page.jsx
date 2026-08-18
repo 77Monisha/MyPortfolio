@@ -4,12 +4,12 @@ import { CodeDemo } from "@/components/demo-components-animate-code";
 import { StarsBackgroundDemo } from "@/components/demo-components-backgrounds-stars";
 import {
   Accessibility,
-  HooBank,
   ICON_MAP,
   MoshMedia,
-  PingPrice,
+  PricePing,
   ROLES,
   SKILLS,
+  ToastStorybook,
 } from "@/lib/data";
 import { GoldTitle, GrayTitle, SectionHeading } from "@/components/reusables";
 import { Button } from "@/components/ui/button";
@@ -219,17 +219,45 @@ export default function LandingPage() {
               <BentoCard
                 title={
                   <GoldTitle>
-                    PingPrice – Real-Time Price Monitoring System
+                    FixMyTree – AI-Powered Website Accessibility Analyser
                   </GoldTitle>
                 }
-                desc={PingPrice.desc}
-                link={PingPrice.live}
-                source={PingPrice.github}
-                tech={PingPrice.tech}
+                desc={Accessibility.desc}
+                link={Accessibility.live}
+                source={Accessibility.github}
+                tech={Accessibility.tech}
               ></BentoCard>
             </div>
 
             <div className="col-span-12 md:col-span-5">
+              <BentoCard
+                title={
+                  <GoldTitle>
+                    PricePing – Real-Time Price Monitoring System
+                  </GoldTitle>
+                }
+                desc={PricePing.desc}
+                link={PricePing.live}
+                source={PricePing.github}
+                tech={PricePing.tech}
+              ></BentoCard>
+            </div>
+
+            <div className="col-span-12 md:col-span-6">
+              <BentoCard
+                title={
+                  <GrayTitle>
+                    Scalable Toast : Reusable Notification Component
+                  </GrayTitle>
+                }
+                desc={ToastStorybook.desc}
+                link={ToastStorybook.live}
+                source={ToastStorybook.github}
+                tech={ToastStorybook.tech}
+              ></BentoCard>
+            </div>
+
+            <div className="col-span-12 md:col-span-6">
               <BentoCard
                 title={
                   <GrayTitle>Mosh Media : Video Streaming Platform</GrayTitle>
@@ -238,24 +266,6 @@ export default function LandingPage() {
                 link={MoshMedia.live}
                 source={MoshMedia.github}
                 tech={MoshMedia.tech}
-              ></BentoCard>
-            </div>
-            <div className="col-span-12 md:col-span-6">
-              <BentoCard
-                title={<GrayTitle>HooBank </GrayTitle>}
-                desc={HooBank.desc}
-                link={HooBank.live}
-                source={HooBank.github}
-                tech={HooBank.tech}
-              ></BentoCard>
-            </div>
-            <div className="col-span-12 md:col-span-6">
-              <BentoCard
-                title={<GoldTitle>FixMyTree</GoldTitle>}
-                desc={Accessibility.desc}
-                link={Accessibility.live}
-                source={Accessibility.github}
-                tech={Accessibility.tech}
               ></BentoCard>
             </div>
           </div>
