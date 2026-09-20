@@ -9,7 +9,7 @@ export const metadata = {
 export default function PortfolioLayout({ children }) {
   return (
     <div
-      className={`${portfolioFonts} pf min-h-screen bg-pf-bg font-body text-pf-text antialiased`}
+      className={`${portfolioFonts} pf pf-pro min-h-screen bg-pf-bg font-body text-pf-text antialiased`}
     >
       {children}
     </div>

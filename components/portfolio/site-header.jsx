@@ -6,7 +6,7 @@ import { NAV_LINKS, PROFILE } from "@/lib/portfolio-data";
 import { ButtonLink } from "./primitives";
 import { ViewToggle } from "./view-mode";
 
-export default function SiteHeader({ views }) {
+export default function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function SiteHeader({ views }) {
         </nav>
 
         <div className="hidden items-center gap-4 lg:flex">
-          <ViewToggle views={views} />
+          <ViewToggle />
           <ButtonLink
             href={PROFILE.resume}
             variant="primary"

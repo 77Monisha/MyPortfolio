@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 import { ButtonLink, Eyebrow } from "../primitives";
 import { ViewToggle } from "../view-mode";
 import PixelField from "./pixel-field";
-import { P3_VIEWS } from "./views";
 
 // On mobile the terminal and stack are trimmed to what reads at a glance.
 const MOBILE_LINES = new Set(["whoami", "stack", "status"]);
@@ -63,7 +62,7 @@ export default function Hero() {
     >
       <div className="relative mx-auto grid max-w-6xl gap-12 px-4 pb-14 pt-8 md:px-8 md:pb-20 md:pt-20 lg:grid-cols-[1.4fr_1fr] lg:items-center">
         <div>
-          <ViewToggle views={P3_VIEWS} fullWidth className="mb-8 lg:hidden" />
+          <ViewToggle fullWidth className="mb-8 lg:hidden" />
           <Eyebrow>{PROFILE.role}</Eyebrow>
           <h1
             id="hero-title"
@@ -122,7 +121,7 @@ export default function Hero() {
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-pf-green opacity-40 motion-reduce:hidden" />
               <span className="relative inline-flex size-2 rounded-full bg-pf-green" />
             </span>
-            Open to relocation
+            Open to relocation to the Netherlands
           </p>
         </div>
 

@@ -6,7 +6,7 @@ import WaterReflection from "../water-reflection";
 import CopyEmail from "./copy-email";
 import GlyphField from "./glyph-field";
 
-// "Let's Connect" with the mirror / water effect from the design references,
+// Closing heading with the mirror / water effect from the design references,
 // over a drifting code-glyph field.
 export default function Contact() {
   return (
@@ -26,9 +26,11 @@ export default function Contact() {
         <div>
           <WaterReflection
             id="contact-title"
-            className="font-display text-[clamp(3rem,9vw,6rem)] leading-[0.95] tracking-[-0.03em]"
+            className="font-display text-[clamp(2.75rem,7vw,5rem)] leading-[0.98] tracking-[-0.03em]"
           >
-            Let&apos;s <em className="italic text-pf-accent">connect.</em>
+            Let&apos;s build
+            <br />
+            something <em className="italic text-pf-accent">useful.</em>
           </WaterReflection>
         </div>
 
