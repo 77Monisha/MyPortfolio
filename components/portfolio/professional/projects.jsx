@@ -1,8 +1,11 @@
 import { ArrowUpRight, BellRing } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
+import { Accessibility, PricePing, ToastStorybook } from "@/lib/data";
 import { PROFILE, PROJECTS } from "@/lib/portfolio-data";
-import { Eyebrow, SectionTitle, TagList } from "../primitives";
+import { cn } from "@/lib/utils";
+import { Eyebrow, RichText, SectionTitle } from "../primitives";
 import PixelField from "./pixel-field";
+import ProjectRail from "./project-rail";
 
 const SEVERITIES = [
   { label: "Critical", count: 14, color: "bg-pf-red" },
@@ -94,69 +97,122 @@ const CARD_GLOWS = {
     { x: 0.72, y: 1.05, rx: 0.6, ry: 0.35, strength: 1.1 },
     { x: 1, y: 0.65, rx: 0.12, ry: 0.4, strength: 0.7 },
   ],
+  default: [{ x: 1, y: 1, rx: 0.4, ry: 0.35, strength: 0.8 }],
 };
 
 // Warm haze under the pixels, matching each card's glow.
 const CARD_HAZE = {
   accessibility: "",
   price: "bg-[radial-gradient(ellipse_75%_40%_at_50%_100%,rgb(214_150_70/0.1),transparent_75%)]",
+  default: "",
 };
 
-// Mobile stacks title → visual → tagline → challenge → tags → button and
-// drops the description; from `sm` the visual moves into its own column on the right.
+// Content comes from the home page data (lib/data.js) so both stay in sync;
+// the /p1-only extras (visual, challenge) are layered on by id.
+const CHALLENGES = Object.fromEntries(PROJECTS.map((p) => [p.id, p.challenge]));
+const CARDS = [
+  { id: "fixmytree", data: Accessibility, visual: "accessibility" },
+  { id: "priceping", data: PricePing, visual: "price" },
+  { id: "scalable-toast", data: ToastStorybook },
+].map(({ id, data, visual }, i) => {
+  const [name, tagline] = data.title.split(" – ");
+  return {
+    id,
+    index: String(i + 1).padStart(2, "0"),
+    name,
+    tagline,
+    points: data.desc,
+    tech: data.tech,
+    live: data.live,
+    github: data.github,
+    visual,
+    challenge: CHALLENGES[id],
+  };
+});
+
+// Mobile stacks title → visual → tagline; from `sm` the visual sits to the
+// right of the title. Points, challenge, tech and links run full width below.
 function ProjectCard({ project }) {
   const Visual = VISUALS[project.visual];
+  const glow = project.visual ?? "default";
   return (
     <article
       aria-labelledby={`${project.id}-title`}
-      className="group relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-pf-border bg-pf-card p-5 transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-pf-muted/50 sm:grid sm:grid-cols-[1fr_13rem] sm:gap-x-6 sm:gap-y-0 md:p-7"
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-pf-border bg-pf-card p-5 transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-pf-muted/50 md:p-7"
     >
       <PixelField
-        glows={CARD_GLOWS[project.visual]}
+        glows={CARD_GLOWS[glow]}
         seed={Number(project.index) * 7}
         step={4}
-        className={`inset-0 ${CARD_HAZE[project.visual]}`}
+        className={`inset-0 ${CARD_HAZE[glow]}`}
       />
 
-      <div data-pixel-clear className="relative order-1 flex items-center gap-3 sm:order-none sm:col-start-1 sm:row-start-1">
-        <span className="rounded-md border border-pf-border px-1.5 py-0.5 font-code text-[11px] text-pf-muted">
-          {project.index}
-        </span>
-        <h3
-          id={`${project.id}-title`}
-          className="font-display text-[1.75rem] leading-none tracking-[-0.01em]"
-        >
-          {project.name}
-        </h3>
+      <div className="relative flex flex-col gap-4 sm:grid sm:grid-cols-[1fr_auto] sm:gap-x-6 sm:gap-y-2">
+        <div data-pixel-clear className="order-1 flex items-center gap-3 sm:order-none sm:col-start-1 sm:row-start-1">
+          <span className="rounded-md border border-pf-border px-1.5 py-0.5 font-code text-[11px] text-pf-muted">
+            {project.index}
+          </span>
+          <h3
+            id={`${project.id}-title`}
+            className="font-display text-[1.75rem] leading-none tracking-[-0.01em]"
+          >
+            {project.name}
+          </h3>
+        </div>
+
+        {Visual && (
+          <div data-pixel-clear className="order-2 sm:order-none sm:col-start-2 sm:row-span-2 sm:row-start-1 sm:w-52">
+            <Visual />
+          </div>
+        )}
+
+        <p data-pixel-clear className="order-3 text-sm text-pf-muted sm:order-none sm:col-start-1 sm:row-start-2 sm:font-display sm:text-[15px] sm:text-pf-text/80">
+          {project.tagline}
+        </p>
       </div>
 
-      <div data-pixel-clear className="relative order-2 sm:order-none sm:col-start-2 sm:row-span-6 sm:row-start-1 sm:self-start">
-        <Visual />
-      </div>
+      <ul data-pixel-clear className="relative mt-5 space-y-2">
+        {project.points.map((point) => (
+          <li key={point} className="flex gap-3 text-sm leading-relaxed text-pf-text/85">
+            <span aria-hidden className="mt-2 size-1 shrink-0 rounded-full bg-pf-muted" />
+            <span>
+              <RichText text={point} />
+            </span>
+          </li>
+        ))}
+      </ul>
 
-      <p data-pixel-clear className="relative order-3 text-sm text-pf-muted sm:order-none sm:col-start-1 sm:row-start-2 sm:mt-2 sm:font-display sm:text-[15px] sm:text-pf-text/80">
-        {project.tagline}
-      </p>
+      {project.challenge && (
+        <p data-pixel-clear className="relative mt-4 text-sm leading-relaxed text-pf-muted">
+          <span className="font-code text-[11px] uppercase tracking-[0.16em] text-pf-orange">
+            Challenge
+          </span>{" "}
+          {project.challenge}
+        </p>
+      )}
 
-      <p data-pixel-clear className="relative hidden text-sm leading-relaxed text-pf-text/85 sm:col-start-1 sm:row-start-3 sm:mt-5 sm:block">
-        {project.description}
-      </p>
-
-      <p data-pixel-clear className="relative order-4 text-sm leading-relaxed text-pf-muted sm:order-none sm:col-start-1 sm:row-start-4 sm:mt-3">
-        <span className="font-code text-[11px] uppercase tracking-[0.16em] text-pf-orange">
-          Challenge
-        </span>{" "}
-        {project.challenge}
-      </p>
-
-      <TagList
+      {/* Tech marked active on the home page is highlighted here too. */}
+      <ul
         data-pixel-clear
-        items={project.tech}
-        label={`${project.name} technologies`}
-        className="relative order-5 sm:order-none sm:col-start-1 sm:row-start-5 sm:mt-5"
-      />
+        aria-label={`${project.name} technologies`}
+        className="relative mt-5 flex flex-wrap gap-1.5"
+      >
+        {project.tech.map((t) => (
+          <li
+            key={t.label}
+            className={cn(
+              "rounded-md border px-2 py-1 font-code text-[11px] leading-none",
+              t.active
+                ? "border-pf-accent/40 bg-pf-accent/10 text-pf-accent"
+                : "border-pf-border bg-pf-bg/60 text-pf-muted",
+            )}
+          >
+            {t.label}
+          </li>
+        ))}
+      </ul>
 
-      <div data-pixel-clear className="relative order-6 flex items-center justify-end gap-4 sm:order-none sm:col-start-1 sm:row-start-6 sm:mt-6 sm:justify-start">
+      <div data-pixel-clear className="relative mt-auto flex items-center justify-end gap-4 pt-6 sm:justify-start">
         <a
           href={project.live}
           target="_blank"
@@ -190,7 +246,7 @@ export default function Projects() {
     <section
       id="work"
       aria-labelledby="work-title"
-      className="scroll-mt-20 border-b border-pf-border"
+      className="scroll-mt-20 overflow-x-clip border-b border-pf-border"
     >
       <div className="mx-auto max-w-6xl px-4 py-16 md:px-8 md:py-24">
         <div className="flex flex-wrap items-end justify-between gap-4">
@@ -215,10 +271,12 @@ export default function Projects() {
           </a>
         </div>
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-2">
-          {PROJECTS.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
+        <div className="mt-10">
+          <ProjectRail label="Projects">
+            {CARDS.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </ProjectRail>
         </div>
       </div>
     </section>
