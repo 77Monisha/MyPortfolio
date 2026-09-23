@@ -1,12 +1,22 @@
 import { ArrowUpRight, Download } from "lucide-react";
-import { HERO_STACK, PROFILE, TERMINAL_LINES } from "@/lib/portfolio-data";
+import { HERO_STACK, PROFILE } from "@/lib/portfolio-data";
 import { cn } from "@/lib/utils";
 import { ButtonLink, Eyebrow } from "../primitives";
 import { ViewToggle } from "../view-mode";
 import PixelField from "./pixel-field";
 
+// /p1's own terminal (the shared TERMINAL_LINES still drive /p2).
+const TERMINAL_LINES = [
+  { cmd: "whoami", value: "monisha-chaurasia" },
+  { cmd: "role", value: "software-engineer / frontend" },
+  { cmd: "experience", value: "3+ years · SDE-II" },
+  { cmd: "core_stack", value: "React · Next.js · TypeScript" },
+  { cmd: "focus", value: "Scalable UI · Product Workflows · Performance" },
+  { cmd: "location", value: "India → Netherlands" },
+];
+
 // On mobile the terminal and stack are trimmed to what reads at a glance.
-const MOBILE_LINES = new Set(["whoami", "stack", "status"]);
+const MOBILE_LINES = new Set(["whoami", "experience", "core_stack"]);
 const MOBILE_STACK = HERO_STACK.slice(0, 3);
 
 // Pixel glow around the terminal, in fractions of a field that extends past
@@ -43,7 +53,7 @@ function Terminal() {
               <span aria-hidden>$ </span>
               {line.cmd}
             </dt>
-            <dd className={line.success ? "text-pf-green" : "text-pf-text"}>
+            <dd className="text-pf-text">
               {line.value}
             </dd>
           </div>
@@ -76,8 +86,10 @@ export default function Hero() {
           </h1>
 
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-pf-text/90">
-            Frontend Engineer with 3+ years of experience building accessible,
-            performant web applications with React and Next.js.
+            Software Engineer building scalable, production-ready web
+            applications with React, Next.js, and TypeScript. Experienced in
+            complex product workflows, performance optimization, and accessible
+            user experiences.
           </p>
 
           {/* Mobile: chips. Desktop: one mono line separated by dots. */}
