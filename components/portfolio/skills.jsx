@@ -1,4 +1,5 @@
 import {
+  SiCss,
   SiDocker,
   SiFigma,
   SiGit,
@@ -34,6 +35,7 @@ export const SKILL_ICONS = {
   react: SiReact,
   nextjs: SiNextdotjs,
   html: SiHtml5,
+  css: SiCss,
   redux: SiRedux,
   zustand: TbHierarchy,
   tanstackquery: SiReactquery,

@@ -12,7 +12,7 @@ const TERMINAL_LINES = [
   { cmd: "experience", value: "3+ years · SDE-II" },
   { cmd: "core_stack", value: "React · Next.js · TypeScript" },
   { cmd: "focus", value: "Scalable UI · Product Workflows · Performance" },
-  { cmd: "location", value: "India → Netherlands" },
+  { cmd: "location", value: "India" },
 ];
 
 // On mobile the terminal and stack are trimmed to what reads at a glance.
@@ -53,9 +53,7 @@ function Terminal() {
               <span aria-hidden>$ </span>
               {line.cmd}
             </dt>
-            <dd className="text-pf-text">
-              {line.value}
-            </dd>
+            <dd className="text-pf-text">{line.value}</dd>
           </div>
         ))}
       </dl>
@@ -93,7 +91,10 @@ export default function Hero() {
           </p>
 
           {/* Mobile: chips. Desktop: one mono line separated by dots. */}
-          <ul className="mt-6 flex flex-wrap gap-2 sm:hidden" aria-label="Core focus">
+          <ul
+            className="mt-6 flex flex-wrap gap-2 sm:hidden"
+            aria-label="Core focus"
+          >
             {MOBILE_STACK.map((item) => (
               <li
                 key={item}
@@ -133,7 +134,7 @@ export default function Hero() {
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-pf-green opacity-40 motion-reduce:hidden" />
               <span className="relative inline-flex size-2 rounded-full bg-pf-green" />
             </span>
-            Open to relocation to the Netherlands
+            Open to relocation
           </p>
         </div>
 

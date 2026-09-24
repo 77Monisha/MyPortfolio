@@ -1,63 +1,102 @@
 import { ArrowUpRight } from "lucide-react";
-import { ROLES } from "@/lib/data";
 import { EXPERIENCE } from "@/lib/portfolio-data";
 import { Eyebrow, RichText, SectionTitle, TagList } from "./primitives";
 
-// Roles, client projects and highlights come from the home page data
-// (lib/data.js) so both stay in sync. Tech tags are /p1-only, by company.
+// /p1's own experience copy (the home page keeps its ROLES in lib/data.js).
+// Tech tags are shared with the portfolio data, by company. WebRTC is
+// dropped here because /p1 no longer lists the Hike Messenger project.
 const TECH = Object.fromEntries(
-  EXPERIENCE.map((job) => [job.company, job.tech]),
+  EXPERIENCE.map((job) => [job.company, job.tech.filter((t) => t !== "WebRTC")]),
 );
 
-// Home renders `title` as a styled heading element; /p1 only needs its text.
-const tagline = (role) => role.title?.props?.children ?? role.title;
-
-// The home data marks links with a trailing 🔗; /p1 shows an arrow instead.
-const cleanName = (name) => name.replace(/\s*🔗\s*$/u, "");
-
-// /p1-only promotions, shown above the earlier role at the same company.
-// `since` also closes the earlier role's period.
-const PROMOTIONS = {
-  "Hawk Martech": {
-    role: "Software Development Engineer II",
-    since: "2026",
+const COMPANIES = [
+  {
+    company: "Hawk MarTech",
+    techKey: "Hawk Martech",
     location: "Gurgaon, India",
-    projects: [
+    start: "April 2024",
+    end: "Present",
+    tagline: "Building scalable systems for real-world users",
+    // Newest first; the first entry is the promotion.
+    positions: [
       {
-        name: "HikeBridge — Customer Engagement Platform",
-        highlights: [
-          "Built the HikeBridge customer dashboard from scratch as the sole frontend developer, delivering **49 routes and 191 reusable components** across a multi-tenant SaaS platform.",
-          "Designed end-to-end workflows for **omnichannel messaging, contact management, WhatsApp templates, audience segmentation, and billing**.",
-          "Engineered a visual workflow automation builder using **React Flow and ELK**, supporting triggers, actions, conditions, wait steps, versioning, and automatic layout for complex customer journeys.",
-          "Integrated multiple backend services for **wallet management, Razorpay payments, usage-based billing, subscription plans, proration, tax invoices, GST, UPI Autopay, and eNACH**.",
+        role: "Software Development Engineer II",
+        period: "Mar 2026 – Present",
+        promoted: true,
+        projects: [
+          {
+            name: "HikeBridge — Customer Engagement Platform",
+            link: "https://hikebridge.com/",
+            highlights: [
+              "Built the customer dashboard from scratch as the **sole frontend developer** — **49 routes** and **191 reusable components** across a multi-tenant SaaS platform.",
+              "Designed end-to-end workflows for omnichannel messaging, contact management, WhatsApp templates, service onboarding, audience segmentation and billing.",
+              "Engineered a visual **workflow automation builder** with React Flow and ELK: triggers, actions, conditions, wait steps, versioning and automatic layout for complex customer journeys.",
+              "Integrated backend services for wallet management, Razorpay payments, usage-based billing, subscription plans, proration, tax invoices, GST, UPI Autopay and eNACH.",
+            ],
+          },
+        ],
+      },
+      {
+        role: "Software Development Engineer I",
+        period: "Apr 2024 – Mar 2026",
+        projects: [
+          {
+            name: "WLPL — Cricket Premier League Platform",
+            link: "https://www.worldlegendsprot20.com/",
+            highlights: [
+              "Built OTP-based authentication and registration for **5,000+ users**, with secure session management and validation safeguards.",
+              "Integrated Razorpay for **1,000+ monthly transactions** — order verification, coupon and affiliate workflows, and a 15-minute payment lock that cut duplicate transactions by **35%**.",
+              "Led frontend development of the TLC Admin Panel with **2 engineers**: manual payment links via SMS/email, coupon management and affiliate rewards.",
+            ],
+          },
+          {
+            name: "OneTurf — Live Match Management Platform",
+            link: "https://www.oneturf.news/",
+            highlights: [
+              "Led development of the live match management system — commentary, fixtures, stats and scoreboard — and optimised API polling, cutting redundant API calls by **40%** during high-traffic events.",
+            ],
+          },
         ],
       },
     ],
   },
-};
-
-// One entry per designation held at the company, newest first.
-function positionsFor(role, start) {
-  const promo = PROMOTIONS[role.label];
-  if (!promo) return [{ role: role.role, projects: role.projects }];
-  return [
-    {
-      role: promo.role,
-      period: `${promo.since} – Present`,
-      location: promo.location,
-      projects: promo.projects,
-    },
-    {
-      role: role.role,
-      period: `${start} – ${promo.since}`,
-      projects: role.projects,
-    },
-  ];
-}
+  {
+    company: "Ingersoll Rand",
+    techKey: "Ingersoll Rand",
+    location: "Bengaluru, India",
+    start: "July 2023",
+    end: "March 2024",
+    tagline: "Designing scalable and accessible UI systems",
+    positions: [
+      {
+        role: "Frontend Engineer",
+        projects: [
+          {
+            name: "SEEPEX",
+            link: "https://www.seepex.com/en/",
+            highlights: [
+              "Built **reusable component system** for large-scale product listings",
+              "Improved **accessibility (a11y)** aligning with **WCAG standards**",
+            ],
+          },
+          {
+            name: "Ingersoll Rand",
+            link: "https://www.ingersollrand.com/en-in/",
+            highlights: [
+              "Developed UI for **industrial machinery listings**",
+              "Implemented **accessibility improvements** (color contrast, readability)",
+              "Contributed to **scalable design system patterns**",
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
 
 function ProjectList({ projects }) {
   return (
-    <ul className="mt-4 space-y-5">
+    <ul className="mt-3 space-y-4">
       {projects.map((project) => (
         <li key={project.name}>
           {project.link ? (
@@ -67,7 +106,7 @@ function ProjectList({ projects }) {
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-1.5 text-sm font-medium text-pf-accent transition-colors hover:text-pf-text"
             >
-              {cleanName(project.name)}
+              {project.name}
               <ArrowUpRight
                 aria-hidden
                 className="size-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
@@ -75,11 +114,9 @@ function ProjectList({ projects }) {
               <span className="sr-only">(opens in a new tab)</span>
             </a>
           ) : (
-            <p className="text-sm font-medium text-pf-accent">
-              {cleanName(project.name)}
-            </p>
+            <p className="text-sm font-medium text-pf-accent">{project.name}</p>
           )}
-          <ul className="mt-2 space-y-1.5">
+          <ul className="mt-1.5 space-y-1.5">
             {project.highlights.map((point) => (
               <li
                 key={point}
@@ -119,17 +156,15 @@ export default function Experience() {
         </div>
 
         <ol className="relative">
-          {ROLES.map((role, i) => {
-            const [start, end] = role.timeline.split(" - ");
-            const positions = positionsFor(role, start);
-            const promoted = positions.length > 1;
+          {COMPANIES.map((job, i) => {
+            const single = job.positions.length === 1;
             return (
               <li
-                key={role.label}
+                key={job.company}
                 className="relative grid gap-x-8 pb-12 pl-8 last:pb-0 md:grid-cols-[7rem_1fr] md:pl-0"
               >
                 {/* Timeline rail + dot. Rail sits left on mobile, between columns on desktop. */}
-                {i < ROLES.length - 1 && (
+                {i < COMPANIES.length - 1 && (
                   <span
                     aria-hidden
                     className="absolute bottom-0 left-[5px] top-2 w-px bg-pf-border md:left-[calc(7rem+1rem+5px)]"
@@ -141,48 +176,68 @@ export default function Experience() {
                 />
 
                 <p className="font-code text-xs uppercase leading-relaxed tracking-[0.12em] text-pf-muted">
-                  <time>{start}</time>
+                  <time>{job.start}</time>
                   <span aria-label="to"> – </span>
                   <br className="hidden md:block" />
-                  {end === "Present" ? end : <time>{end}</time>}
+                  {job.end === "Present" ? job.end : <time>{job.end}</time>}
                 </p>
 
                 <div className="mt-2 md:mt-0 md:pl-8">
                   <h3 className="text-lg font-medium text-pf-text">
-                    {role.label}
+                    {job.company}
+                    <span className="font-normal text-pf-muted">
+                      {" "}
+                      · {job.location}
+                    </span>
                   </h3>
-                  {!promoted && (
-                    <p className="text-sm text-pf-muted">{role.role}</p>
+                  {single && (
+                    <p className="text-sm text-pf-muted">
+                      {job.positions[0].role}
+                    </p>
                   )}
-                  <p className="mt-3 font-display text-[17px] italic text-pf-text/85">
-                    {tagline(role)}
+                  <p className="mt-2 font-display text-[17px] italic text-pf-text/85">
+                    {job.tagline}
                   </p>
 
-                  {promoted ? (
-                    <ol className="mt-5 space-y-7">
-                      {positions.map((position) => (
-                        <li key={position.role}>
-                          <h4 className="text-[15px] font-medium text-pf-text">
-                            {position.role}
-                          </h4>
-                          <p className="mt-0.5 font-code text-[11px] uppercase tracking-[0.12em] text-pf-muted">
-                            {position.period}
-                            {position.location && ` · ${position.location}`}
-                          </p>
-                          <ProjectList projects={position.projects} />
-                        </li>
-                      ))}
-                    </ol>
-                  ) : (
-                    <div className="mt-1">
-                      <ProjectList projects={positions[0].projects} />
-                    </div>
-                  )}
+                  {/* Several positions at one company read as one progression:
+                      newest on top, joined by a short inner rail. */}
+                  <ol
+                    className={
+                      single
+                        ? "mt-1"
+                        : "relative mt-5 space-y-7 border-l border-pf-border/70 pl-5"
+                    }
+                  >
+                    {job.positions.map((position) => (
+                      <li key={position.role} className="relative">
+                        {!single && (
+                          <>
+                            <span
+                              aria-hidden
+                              className={`absolute -left-6 top-1.5 size-[7px] rounded-full ${position.promoted ? "bg-pf-accent" : "bg-pf-muted"}`}
+                            />
+                            <h4 className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[15px] font-medium text-pf-text">
+                              {position.role}
+                              {position.promoted && (
+                                <span className="rounded-full border border-pf-accent/40 bg-pf-accent/10 px-2 py-0.5 font-code text-[10px] uppercase tracking-[0.14em] text-pf-accent">
+                                  Promoted
+                                </span>
+                              )}
+                            </h4>
+                            <p className="mt-0.5 font-code text-[11px] uppercase tracking-[0.12em] text-pf-muted">
+                              {position.period}
+                            </p>
+                          </>
+                        )}
+                        <ProjectList projects={position.projects} />
+                      </li>
+                    ))}
+                  </ol>
 
-                  {TECH[role.label] && (
+                  {TECH[job.techKey] && (
                     <TagList
-                      items={TECH[role.label]}
-                      label={`Technologies used at ${role.label}`}
+                      items={TECH[job.techKey]}
+                      label={`Technologies used at ${job.company}`}
                       className="mt-6"
                     />
                   )}

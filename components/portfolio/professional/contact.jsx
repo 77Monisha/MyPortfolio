@@ -35,11 +35,15 @@ export default function Contact() {
         </div>
 
         <p className="mt-6 max-w-md text-base leading-relaxed text-pf-muted">
-          I&apos;m open to frontend opportunities — full-time roles or just a
-          chat. Feel free to reach out.
+          I&apos;m open to Software Engineering opportunities - full-time roles
+          or just a chat. Feel free to reach out.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <ButtonLink href={`mailto:${PROFILE.email}`} variant="primary" icon={Mail}>
+          <ButtonLink
+            href={`mailto:${PROFILE.email}`}
+            variant="primary"
+            icon={Mail}
+          >
             Email me
           </ButtonLink>
           <ButtonLink href={PROFILE.linkedin} icon={FaLinkedin} external>
