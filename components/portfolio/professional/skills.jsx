@@ -152,7 +152,7 @@ export default function Skills() {
       aria-labelledby="skills-title"
       className="scroll-mt-20 border-b border-pf-border"
     >
-      <div className="mx-auto max-w-6xl px-4 py-16 md:px-8 md:py-24">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 md:px-8 md:py-24 xl:grid-cols-[auto_1fr] xl:gap-14">
         <div>
           <Eyebrow>Technical skills</Eyebrow>
           <SectionTitle id="skills-title" className="mt-3">
@@ -162,7 +162,7 @@ export default function Skills() {
           </SectionTitle>
         </div>
 
-        <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-[repeat(4,auto)] lg:justify-between">
           {SKILL_GROUPS.map((group) => (
             <div key={group.title}>
               <h3 className="text-sm font-medium text-pf-text">
