@@ -124,3 +124,80 @@
     scroll-behavior: smooth;
   }
 }
+/* ── Portfolio design system (/p1, /p2, /p3) ── */
+/* Colors are real CSS variables (not inlined) so a view can re-tune them in
+   its own scope — see .pf-p3 below. */
+@theme {
+  --color-pf-bg: #0b0b0b;
+  --color-pf-surface: #111111;
+  --color-pf-card: #171717;
+  --color-pf-border: #2a2a2a;
+  --color-pf-text: #f1efe8;
+  --color-pf-muted: #a3a3a0;
+  --color-pf-accent: #d8d0b8;
+  --color-pf-orange: #ff8a3d;
+  --color-pf-green: #22c55e;
+  --color-pf-red: #ef4444;
+}
+
+/* Fonts stay inlined: their next/font variables live on the view wrapper. */
+@theme inline {
+  --font-display: var(--font-playfair), Georgia, serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-code: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+body:has(.pf) {
+  background: #0b0b0b;
+}
+
+/* /p3 follows the design board palette exactly: muted-yellow accent and the
+   "use sparingly" orange. */
+.pf-p3 {
+  --color-pf-accent: #cfc3a3;
+  --color-pf-orange: #f97316;
+}
+
+.pf ::selection {
+  background: var(--color-pf-accent);
+  color: #0b0b0b;
+}
+
+.pf :focus-visible {
+  outline: 2px solid var(--color-pf-accent);
+  outline-offset: 3px;
+}
+
+/* The command palette input sits inside its own bordered field */
+.pf .pf-palette-input:focus-visible {
+  outline: none;
+}
+
+/* Warm halftone dots used behind the hero terminal and project cards */
+.pf-halftone {
+  background-image: radial-gradient(
+    rgb(255 138 61 / 0.55) 0.9px,
+    transparent 1.3px
+  );
+  background-size: 7px 7px;
+}
+
+.pf-marquee-track {
+  animation: pf-marquee 60s linear infinite;
+}
+
+@keyframes pf-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-marquee-track {
+    animation: none;
+  }
+  .pf * {
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
