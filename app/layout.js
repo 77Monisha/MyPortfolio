@@ -1,19 +1,10 @@
 import { ThemeProvider } from "@/components/theme-provider";
+// Self-hosted (see lib/portfolio-fonts.js for why not next/font/google);
+// `.site-fonts` in globals.css sets --font-serif / --font-sans.
+import "@fontsource-variable/lora/wght.css";
+import "@fontsource-variable/lora/wght-italic.css";
+import "@fontsource-variable/dm-sans/wght.css";
 import "./globals.css";
-import { DM_Sans, Lora } from "next/font/google";
-
-const lora = Lora({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  style: ["normal", "italic"],
-  variable: "--font-serif",
-});
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  variable: "--font-sans",
-});
 
 export const metadata = {
   title: "Monisha Chaurasia | Software Engineer Portfolio",
@@ -25,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body className={`${lora.variable} ${dmSans.variable} font-sans`}>
+      <body className="site-fonts font-sans">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
