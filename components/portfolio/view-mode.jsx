@@ -12,7 +12,7 @@ const VIEWS = [
   { href: "/p2", label: "Developer" },
 ];
 
-export function ViewToggle({ className, views = VIEWS, fullWidth = false }) {
+export function ViewToggle({ className, fullWidth = false }) {
   const pathname = usePathname();
 
   return (
@@ -25,7 +25,7 @@ export function ViewToggle({ className, views = VIEWS, fullWidth = false }) {
       )}
     >
       <ul className={cn("flex", fullWidth && "w-full")}>
-        {views.map((view) => {
+        {VIEWS.map((view) => {
           const active = pathname === view.href;
           return (
             <li key={view.href} className={cn(fullWidth && "flex-1")}>

@@ -124,9 +124,9 @@
     scroll-behavior: smooth;
   }
 }
-/* ── Portfolio design system (/p1, /p2, /p3) ── */
+/* ── Portfolio design system (/p1, /p2) ── */
 /* Colors are real CSS variables (not inlined) so a view can re-tune them in
-   its own scope — see .pf-p3 below. */
+   its own scope — see .pf-pro below. */
 @theme {
   --color-pf-bg: #0b0b0b;
   --color-pf-surface: #111111;
@@ -151,9 +151,9 @@ body:has(.pf) {
   background: #0b0b0b;
 }
 
-/* /p3 follows the design board palette exactly: muted-yellow accent and the
-   "use sparingly" orange. */
-.pf-p3 {
+/* The Professional view (/p1) follows the design board palette exactly:
+   muted-yellow accent and the "use sparingly" orange. */
+.pf-pro {
   --color-pf-accent: #cfc3a3;
   --color-pf-orange: #f97316;
 }

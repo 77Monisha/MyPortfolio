@@ -1,12 +1,12 @@
 import About from "@/components/portfolio/about";
-import Contact from "@/components/portfolio/contact";
 import Experience from "@/components/portfolio/experience";
-import Hero from "@/components/portfolio/hero";
 import Marquee from "@/components/portfolio/marquee";
-import Projects from "@/components/portfolio/projects";
+import Contact from "@/components/portfolio/professional/contact";
+import Hero from "@/components/portfolio/professional/hero";
+import Projects from "@/components/portfolio/professional/projects";
+import Skills from "@/components/portfolio/professional/skills";
 import SiteFooter from "@/components/portfolio/site-footer";
 import SiteHeader from "@/components/portfolio/site-header";
-import Skills from "@/components/portfolio/skills";
 
 export default function PortfolioPhaseOne() {
   return (

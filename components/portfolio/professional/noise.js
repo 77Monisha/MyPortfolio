@@ -1,4 +1,4 @@
-// Deterministic noise shared by the /p3 canvas textures.
+// Deterministic noise shared by the Professional view canvas textures.
 
 function hash(x, y, seed) {
   let h = Math.imul(x, 374761393) + Math.imul(y, 668265263) + Math.imul(seed, 982451653);
