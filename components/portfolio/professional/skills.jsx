@@ -2,24 +2,29 @@ import { ICON_MAP } from "@/lib/data";
 import { Eyebrow, SectionTitle } from "../primitives";
 import { SKILL_ICONS } from "../skills";
 
-// /p1's skills (the resume list) in the original /p1 categories; the shared
-// SKILL_GROUPS in lib/portfolio-data still drive /p2.
+// /p1's skills, synced with the resume (the shared SKILL_GROUPS in
+// lib/portfolio-data still drive /p2).
 const SKILL_GROUPS = [
   {
-    title: "Core",
+    title: "Languages",
     items: [
       { name: "JavaScript", icon: "javascript" },
       { name: "TypeScript", icon: "typescript" },
-      { name: "React", icon: "react" },
-      { name: "Next.js", icon: "nextjs" },
-      { name: "HTML", icon: "html" },
-      { name: "CSS", icon: "css" },
-      { name: "SCSS", icon: "sass" },
-      { name: "Internationalization", icon: "globe" },
     ],
   },
   {
-    title: "State & Data",
+    title: "Frontend Development",
+    items: [
+      { name: "React", icon: "react" },
+      { name: "Next.js", icon: "nextjs" },
+      { name: "Tailwind CSS", icon: "tailwind" },
+      { name: "SCSS", icon: "sass" },
+      { name: "ShadCN", icon: "shadcn" },
+      { name: "React Flow", icon: "reactflow" },
+    ],
+  },
+  {
+    title: "State Management & Data",
     items: [
       { name: "Redux", icon: "redux" },
       { name: "Zustand", icon: "zustand" },
@@ -41,31 +46,43 @@ const SKILL_GROUPS = [
     title: "Testing & Quality",
     items: [
       { name: "Playwright", icon: "playwright" },
-      { name: "Jest", icon: "jest" },
-      { name: "Vitest", icon: "vitest" },
       { name: "axe-core", icon: "accessibility" },
-      { name: "Lighthouse", icon: "lighthouse" },
-      { name: "Accessibility (WCAG)", icon: "accessibility" },
+      { name: "Vitest", icon: "vitest" },
+      { name: "Jest", icon: "jest" },
+      { name: "Unit Testing", icon: "unittest" },
+      { name: "Integration Testing", icon: "integrationtest" },
+    ],
+  },
+  {
+    title: "Web Engineering & Tools",
+    items: [
+      { name: "Web Accessibility (a11y)", icon: "accessibility" },
+      { name: "Internationalization (i18n)", icon: "globe" },
       { name: "Core Web Vitals", icon: "web" },
       { name: "SEO", icon: "seo" },
-    ],
-  },
-  {
-    title: "AI & Automation",
-    items: [
-      { name: "Gemini API", icon: "gemini" },
-      { name: "LLMs", icon: "ai" },
-      { name: "Firecrawl", icon: "fire" },
-      { name: "GitHub Actions", icon: "githubactions" },
-    ],
-  },
-  {
-    title: "Tools",
-    items: [
+      { name: "Lighthouse", icon: "lighthouse" },
+      { name: "Razorpay", icon: "razorpay" },
       { name: "Git", icon: "git" },
-      { name: "Docker", icon: "docker" },
       { name: "Postman", icon: "postman" },
       { name: "Figma", icon: "figma" },
+    ],
+  },
+  {
+    title: "AI & Emerging Tech",
+    items: [
+      { name: "LLMs", icon: "ai" },
+      { name: "Generative AI (GenAI)", icon: "genai" },
+      { name: "Gemini API", icon: "gemini" },
+      { name: "Vector Databases", icon: "vector" },
+      { name: "Firecrawl", icon: "fire" },
+    ],
+  },
+  {
+    title: "DevOps & Automation",
+    items: [
+      { name: "Docker", icon: "docker" },
+      { name: "GitHub Actions", icon: "githubactions" },
+      { name: "CI/CD", icon: "cicd" },
     ],
   },
 ];
@@ -135,7 +152,7 @@ export default function Skills() {
       aria-labelledby="skills-title"
       className="scroll-mt-20 border-b border-pf-border"
     >
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 md:px-8 md:py-24 lg:grid-cols-[1fr_2.2fr]">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 md:px-8 md:py-24 xl:grid-cols-[auto_1fr] xl:gap-14">
         <div>
           <Eyebrow>Technical skills</Eyebrow>
           <SectionTitle id="skills-title" className="mt-3">
@@ -145,7 +162,7 @@ export default function Skills() {
           </SectionTitle>
         </div>
 
-        <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-[repeat(4,auto)] lg:justify-between">
           {SKILL_GROUPS.map((group) => (
             <div key={group.title}>
               <h3 className="text-sm font-medium text-pf-text">
@@ -156,11 +173,11 @@ export default function Skills() {
                   return (
                     <li
                       key={item.name}
-                      className="flex items-center gap-2.5 text-[13px] text-pf-muted"
+                      className="flex items-start gap-2.5 text-[13px] leading-5 text-pf-muted"
                     >
                       <SkillIcon
                         icon={item.icon}
-                        className={`size-3.5 shrink-0 ${ICON_COLORS[item.icon] ?? "text-pf-text"}`}
+                        className={`mt-[3px] size-3.5 shrink-0 ${ICON_COLORS[item.icon] ?? "text-pf-text"}`}
                       />
                       {item.name}
                     </li>

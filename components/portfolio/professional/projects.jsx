@@ -114,43 +114,43 @@ const CARDS = [
   {
     id: "fixmytree",
     name: "FixMyTree",
-    purpose: "Accessibility scanner that turns WCAG issues into fixes.",
+    purpose:
+      "AI-powered website accessibility scanner that helps developers identify and prioritize WCAG issues.",
     description:
-      "Scans any public page in a real browser for WCAG 2.1 A/AA violations, then scores, triages and tracks them in a scan history. Gemini suggests corrected markup for each issue, so teams can fix problems instead of just reading audit output.",
+      "Scans public web pages in a real browser using Playwright and axe-core, then groups accessibility violations by severity and affected element. Provides accessibility scoring, scan history, and Gemini-powered remediation suggestions, with PDF reporting.",
     challenge:
-      "Auditing rendered pages reliably in a real browser and turning raw findings into prioritised, actionable issues.",
+      "Auditing fully rendered pages in headless Chromium rather than relying on static HTML.",
     highlights: [
-      "**Structured AI responses** with caching and retry handling.",
-      "**Row Level Security** per user, plus **GitHub Actions** CI.",
+      "Severity-based issue triage and scan history across projects and pages.",
+      "AI-generated remediation suggestions with structured responses and user-scoped data.",
     ],
-    tech: ["Next.js", "Playwright", "axe-core", "Supabase", "Gemini"],
+    tech: ["Next.js", "Playwright", "axe-core", "Supabase", "Gemini API"],
     visual: "accessibility",
   },
   {
     id: "priceping",
     name: "PricePing",
-    purpose: "Price tracker that alerts you when a deal is worth buying.",
+    purpose:
+      "Product price monitoring that helps users identify worthwhile deals without repeatedly checking stores.",
     description:
-      "Paste a product URL to extract its price, stock and variants, then let scheduled checks build a price history. Email alerts fire only when target price, tolerance, stock and size line up, so users hear about purchases they can actually make.",
+      "Tracks products from their URLs, extracts price and variant information, and records price history. Scheduled checks evaluate target price, tolerance, stock, and variant availability before sending email alerts.",
     challenge:
-      "Monitoring changing prices and variants reliably, and alerting only when each user's conditions are met.",
+      "Determining when a price change warrants an alert using target-price, tolerance, and variant-availability rules.",
     highlights: [
-      "**Variant-aware monitoring** with price history and filtering.",
-      "**User-level data isolation**, plus **GitHub Actions** CI.",
+      "Variant-aware monitoring with price history and product filtering.",
+      "Automated email alerts and user-level data isolation.",
     ],
-    tech: ["Next.js", "Supabase", "Firecrawl", "Resend"],
+    tech: ["Next.js", "Supabase", "Firecrawl", "PostgreSQL", "Resend"],
     visual: "price",
   },
   {
+    // Secondary project: smaller title, no challenge or highlights.
     id: "scalable-toast",
     name: "Scalable Toast",
-    purpose: "Reusable notification component.",
+    secondary: true,
+    purpose: "Reusable React notification component.",
     description:
-      "A reusable Toast component with multiple variants, configurable messages and auto-dismiss.",
-    highlights: [
-      "State handled locally with **React Hooks** — no global store.",
-      "Each variant ships as an interactive **Storybook** story.",
-    ],
+      "Multiple variants, configurable messages and auto-dismiss, with each variant shipped as an interactive Storybook story.",
     tech: ["React", "Storybook", "Vite"],
   },
 ].map((card, i) => ({
@@ -184,7 +184,7 @@ function ProjectCard({ project }) {
           </span>
           <h3
             id={`${project.id}-title`}
-            className="font-display text-[1.75rem] leading-none tracking-[-0.01em]"
+            className={`font-display leading-none tracking-[-0.01em] ${project.secondary ? "text-[1.4rem] text-pf-text/90" : "text-[1.75rem]"}`}
           >
             {project.name}
           </h3>
@@ -201,7 +201,10 @@ function ProjectCard({ project }) {
         </p>
       </div>
 
-      <p data-pixel-clear className="relative mt-4 text-sm leading-relaxed text-pf-text/85">
+      <p
+        data-pixel-clear
+        className={`relative mt-4 text-sm leading-relaxed ${project.secondary ? "text-pf-muted" : "text-pf-text/85"}`}
+      >
         {project.description}
       </p>
 
@@ -214,6 +217,7 @@ function ProjectCard({ project }) {
         </p>
       )}
 
+      {project.highlights && (
       <ul data-pixel-clear className="relative mt-3 space-y-1">
         {project.highlights.map((point) => (
           <li key={point} className="flex gap-3 text-sm leading-relaxed text-pf-muted">
@@ -224,6 +228,7 @@ function ProjectCard({ project }) {
           </li>
         ))}
       </ul>
+      )}
 
       <TagList
         data-pixel-clear
