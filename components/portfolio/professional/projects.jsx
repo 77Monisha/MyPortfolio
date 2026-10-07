@@ -1,9 +1,7 @@
 import { ArrowUpRight, BellRing } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
-import { Accessibility, PricePing, ToastStorybook } from "@/lib/data";
-import { PROFILE, PROJECTS } from "@/lib/portfolio-data";
-import { cn } from "@/lib/utils";
-import { Eyebrow, RichText, SectionTitle } from "../primitives";
+import { PROFILE, PROJECTS, SIDE_PROJECTS } from "@/lib/portfolio-data";
+import { Eyebrow, RichText, SectionTitle, TagList } from "../primitives";
 import PixelField from "./pixel-field";
 import ProjectRail from "./project-rail";
 
@@ -107,31 +105,63 @@ const CARD_HAZE = {
   default: "",
 };
 
-// Content comes from the home page data (lib/data.js) so both stay in sync;
-// the /p1-only extras (visual, challenge) are layered on by id.
-const CHALLENGES = Object.fromEntries(PROJECTS.map((p) => [p.id, p.challenge]));
+// /p1's project copy, checked against each project's public showcase README.
+// Links come from the shared portfolio data so they stay in one place.
+const LINKS = Object.fromEntries(
+  [...PROJECTS, ...SIDE_PROJECTS].map((p) => [p.id, { live: p.live, github: p.github }]),
+);
 const CARDS = [
-  { id: "fixmytree", data: Accessibility, visual: "accessibility" },
-  { id: "priceping", data: PricePing, visual: "price" },
-  { id: "scalable-toast", data: ToastStorybook },
-].map(({ id, data, visual }, i) => {
-  const [name, tagline] = data.title.split(" – ");
-  return {
-    id,
-    index: String(i + 1).padStart(2, "0"),
-    name,
-    tagline,
-    points: data.desc,
-    tech: data.tech,
-    live: data.live,
-    github: data.github,
-    visual,
-    challenge: CHALLENGES[id],
-  };
-});
+  {
+    id: "fixmytree",
+    name: "FixMyTree",
+    purpose: "Accessibility scanner that turns WCAG issues into fixes.",
+    description:
+      "Scans any public page in a real browser for WCAG 2.1 A/AA violations, then scores, triages and tracks them in a scan history. Gemini suggests corrected markup for each issue, so teams can fix problems instead of just reading audit output.",
+    challenge:
+      "Auditing rendered pages reliably in a real browser and turning raw findings into prioritised, actionable issues.",
+    highlights: [
+      "**Structured AI responses** with caching and retry handling.",
+      "**Row Level Security** per user, plus **GitHub Actions** CI.",
+    ],
+    tech: ["Next.js", "Playwright", "axe-core", "Supabase", "Gemini"],
+    visual: "accessibility",
+  },
+  {
+    id: "priceping",
+    name: "PricePing",
+    purpose: "Price tracker that alerts you when a deal is worth buying.",
+    description:
+      "Paste a product URL to extract its price, stock and variants, then let scheduled checks build a price history. Email alerts fire only when target price, tolerance, stock and size line up, so users hear about purchases they can actually make.",
+    challenge:
+      "Monitoring changing prices and variants reliably, and alerting only when each user's conditions are met.",
+    highlights: [
+      "**Variant-aware monitoring** with price history and filtering.",
+      "**User-level data isolation**, plus **GitHub Actions** CI.",
+    ],
+    tech: ["Next.js", "Supabase", "Firecrawl", "Resend"],
+    visual: "price",
+  },
+  {
+    id: "scalable-toast",
+    name: "Scalable Toast",
+    purpose: "Reusable notification component.",
+    description:
+      "A reusable Toast component with multiple variants, configurable messages and auto-dismiss.",
+    highlights: [
+      "State handled locally with **React Hooks** — no global store.",
+      "Each variant ships as an interactive **Storybook** story.",
+    ],
+    tech: ["React", "Storybook", "Vite"],
+  },
+].map((card, i) => ({
+  ...card,
+  ...LINKS[card.id],
+  index: String(i + 1).padStart(2, "0"),
+}));
 
-// Mobile stacks title → visual → tagline; from `sm` the visual sits to the
-// right of the title. Points, challenge, tech and links run full width below.
+// Mobile stacks title → visual → purpose; from `sm` the visual sits to the
+// right of the title. Description, challenge, highlights, tech and links run
+// full width below.
 function ProjectCard({ project }) {
   const Visual = VISUALS[project.visual];
   const glow = project.visual ?? "default";
@@ -167,23 +197,16 @@ function ProjectCard({ project }) {
         )}
 
         <p data-pixel-clear className="order-3 text-sm text-pf-muted sm:order-none sm:col-start-1 sm:row-start-2 sm:font-display sm:text-[15px] sm:text-pf-text/80">
-          {project.tagline}
+          {project.purpose}
         </p>
       </div>
 
-      <ul data-pixel-clear className="relative mt-5 space-y-2">
-        {project.points.map((point) => (
-          <li key={point} className="flex gap-3 text-sm leading-relaxed text-pf-text/85">
-            <span aria-hidden className="mt-2 size-1 shrink-0 rounded-full bg-pf-muted" />
-            <span>
-              <RichText text={point} />
-            </span>
-          </li>
-        ))}
-      </ul>
+      <p data-pixel-clear className="relative mt-4 text-sm leading-relaxed text-pf-text/85">
+        {project.description}
+      </p>
 
       {project.challenge && (
-        <p data-pixel-clear className="relative mt-4 text-sm leading-relaxed text-pf-muted">
+        <p data-pixel-clear className="relative mt-3 text-sm leading-relaxed text-pf-muted">
           <span className="font-code text-[11px] uppercase tracking-[0.16em] text-pf-orange">
             Challenge
           </span>{" "}
@@ -191,28 +214,25 @@ function ProjectCard({ project }) {
         </p>
       )}
 
-      {/* Tech marked active on the home page is highlighted here too. */}
-      <ul
-        data-pixel-clear
-        aria-label={`${project.name} technologies`}
-        className="relative mt-5 flex flex-wrap gap-1.5"
-      >
-        {project.tech.map((t) => (
-          <li
-            key={t.label}
-            className={cn(
-              "rounded-md border px-2 py-1 font-code text-[11px] leading-none",
-              t.active
-                ? "border-pf-accent/40 bg-pf-accent/10 text-pf-accent"
-                : "border-pf-border bg-pf-bg/60 text-pf-muted",
-            )}
-          >
-            {t.label}
+      <ul data-pixel-clear className="relative mt-3 space-y-1">
+        {project.highlights.map((point) => (
+          <li key={point} className="flex gap-3 text-sm leading-relaxed text-pf-muted">
+            <span aria-hidden className="mt-2 size-1 shrink-0 rounded-full bg-pf-accent" />
+            <span>
+              <RichText text={point} />
+            </span>
           </li>
         ))}
       </ul>
 
-      <div data-pixel-clear className="relative mt-auto flex items-center justify-end gap-4 pt-6 sm:justify-start">
+      <TagList
+        data-pixel-clear
+        items={project.tech}
+        label={`${project.name} technologies`}
+        className="relative mt-4"
+      />
+
+      <div data-pixel-clear className="relative mt-auto flex items-center justify-end gap-4 pt-5 sm:justify-start">
         <a
           href={project.live}
           target="_blank"

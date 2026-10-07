@@ -1,7 +1,7 @@
 // /p1's About copy (the shared ABOUT in lib/portfolio-data still drives /p2).
 const ABOUT = {
   intro:
-    "I'm a **Software Engineer specialising in frontend development**, building scalable, production-ready applications with React, Next.js, and TypeScript. I enjoy solving complex product challenges, designing reusable UI systems, and improving performance and accessibility. Currently based in India, I'm open to relocation to the **Netherlands**.",
+    "I'm a **Software Engineer specialising in frontend development**, building scalable, production-ready applications with React, Next.js, and TypeScript. I enjoy solving complex product challenges, designing reusable UI systems, and improving performance and accessibility. Currently based in India, I'm open to relocation.",
   stats: [
     { value: "3+", label: "Years of experience" },
     { value: "5+", label: "Projects" },
@@ -51,7 +51,10 @@ export default function About() {
 
           <dl className="grid grid-cols-3 divide-x divide-pf-border rounded-xl border border-pf-border bg-pf-card">
             {ABOUT.stats.map((stat) => (
-              <div key={stat.label} className="flex flex-col-reverse gap-1 p-4 md:p-6">
+              <div
+                key={stat.label}
+                className="flex flex-col-reverse gap-1 p-4 md:p-6"
+              >
                 <dt className="text-xs text-pf-muted">{stat.label}</dt>
                 <dd className="font-display text-2xl text-pf-text md:text-4xl">
                   {stat.value}
@@ -83,7 +86,9 @@ export default function About() {
               <ul className="mt-4 space-y-2.5 font-code text-xs text-pf-muted">
                 {ABOUT.learning.map((item) => (
                   <li key={item}>
-                    <span aria-hidden className="text-pf-orange">→ </span>
+                    <span aria-hidden className="text-pf-orange">
+                      →{" "}
+                    </span>
                     {item}
                   </li>
                 ))}
