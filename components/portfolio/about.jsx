@@ -1,4 +1,24 @@
-import { ABOUT } from "@/lib/portfolio-data";
+// /p1's About copy (the shared ABOUT in lib/portfolio-data still drives /p2).
+const ABOUT = {
+  intro:
+    "I'm a **Software Engineer specialising in frontend development**, building scalable, production-ready applications with React, Next.js, and TypeScript. I enjoy solving complex product challenges, designing reusable UI systems, and improving performance and accessibility. Currently based in India, I'm open to relocation to the **Netherlands**.",
+  stats: [
+    { value: "3+", label: "Years of experience" },
+    { value: "5+", label: "Projects" },
+    { value: "5,000+", label: "Users reached" },
+  ],
+  languages: [
+    { name: "English", level: "Professional", tone: "accent" },
+    { name: "Hindi", level: "Native", tone: "muted" },
+    { name: "Dutch", level: "Beginner (A1), learning", tone: "orange" },
+  ],
+  learning: [
+    "Advanced TypeScript",
+    "System design and frontend architecture",
+    "Dutch (A1 → A2)",
+    "AI-powered applications and automation",
+  ],
+};
 import { Eyebrow, RichText, SectionTitle } from "./primitives";
 
 const TONES = {
