@@ -1,7 +1,7 @@
 import { Building2, Download, Mail, MapPin } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
-import { ABOUT, EXPERIENCE, PROFILE } from "@/lib/portfolio-data";
-import { ButtonLink, NlFlag } from "../primitives";
+import { ABOUT, CAREER, PROFILE } from "@/lib/portfolio-data";
+import { ButtonLink } from "../primitives";
 import { ViewToggle } from "../view-mode";
 
 const TONES = {
@@ -22,7 +22,8 @@ function SidebarBlock({ title, children }) {
 }
 
 export default function ProfileSidebar() {
-  const current = EXPERIENCE.find((job) => job.end === "Present");
+  const current = CAREER[0];
+  const currentProduct = current.projects[0].name.split(" — ")[0];
 
   return (
     <section aria-labelledby="profile-name" className="space-y-5">
@@ -56,13 +57,14 @@ export default function ProfileSidebar() {
       </div>
 
       <p className="text-sm leading-relaxed text-pf-text/85">
-        {PROFILE.role} with 3+ years building accessible, performant web
-        applications with React and Next.js.
+        <span className="font-medium text-pf-text">{current.role}</span> at{" "}
+        {current.company},
+        building <span className="font-medium text-pf-text">{currentProduct}</span>.
       </p>
 
       <p className="flex items-center gap-2.5 rounded-lg border border-pf-border bg-pf-card px-3 py-2 text-[13px] text-pf-text">
         <span aria-hidden className="size-2 shrink-0 rounded-full bg-pf-green" />
-        Open to relocation to the Netherlands
+        {ABOUT.status}
       </p>
 
       <div className="grid gap-2">
@@ -87,15 +89,13 @@ export default function ProfileSidebar() {
       </dl>
 
       <ul className="space-y-2.5 text-[13px] text-pf-muted">
-        {current && (
-          <li className="flex items-center gap-2.5">
-            <Building2 aria-hidden className="size-4 shrink-0" />
-            {current.company}
-          </li>
-        )}
+        <li className="flex items-center gap-2.5">
+          <Building2 aria-hidden className="size-4 shrink-0" />
+          {current.company}
+        </li>
         <li className="flex items-center gap-2.5">
           <MapPin aria-hidden className="size-4 shrink-0" />
-          India <span aria-label="to">→</span> Netherlands <NlFlag />
+          {current.location}
         </li>
         <li className="flex items-center gap-2.5">
           <Mail aria-hidden className="size-4 shrink-0" />
@@ -136,17 +136,6 @@ export default function ProfileSidebar() {
               <span aria-hidden className={`size-1.5 rounded-full ${TONES[lang.tone]}`} />
               <span className="text-pf-text">{lang.name}</span>
               <span className="text-pf-muted">— {lang.level}</span>
-            </li>
-          ))}
-        </ul>
-      </SidebarBlock>
-
-      <SidebarBlock title="Currently learning">
-        <ul className="space-y-2 font-code text-xs text-pf-muted">
-          {ABOUT.learning.map((item) => (
-            <li key={item}>
-              <span aria-hidden className="text-pf-orange">→ </span>
-              {item}
             </li>
           ))}
         </ul>

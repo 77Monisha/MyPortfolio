@@ -3,7 +3,7 @@ import { portfolioFonts } from "@/lib/portfolio-fonts";
 export const metadata = {
   title: "Monisha Chaurasia — Developer View",
   description:
-    "The developer side of Monisha Chaurasia's portfolio: README, pinned repositories, commit-style experience and skills. Frontend Engineer open to relocation to the Netherlands.",
+    "Monisha Chaurasia's developer profile: README, pinned repositories, experience and skills. Software Development Engineer II building with React, Next.js and TypeScript. Open to international opportunities.",
 };
 
 export default function DeveloperLayout({ children }) {
