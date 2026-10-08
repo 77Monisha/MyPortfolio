@@ -44,7 +44,7 @@ const COMPANIES = [
             name: "WLPL — Cricket Premier League Platform",
             link: "https://www.worldlegendsprot20.com/",
             highlights: [
-              "Built OTP-based authentication and registration for **5,000+ users**, with secure session management and validation safeguards.",
+              "Built OTP-based authentication and registration for **500K+ users**, with secure session management and validation safeguards.",
               "Integrated Razorpay for **1,000+ monthly transactions** — order verification, coupon and affiliate workflows, and a 15-minute payment lock that cut duplicate transactions by **35%**.",
               "Led frontend development of the TLC Admin Panel with **2 engineers**: manual payment links via SMS/email, coupon management and affiliate rewards.",
             ],

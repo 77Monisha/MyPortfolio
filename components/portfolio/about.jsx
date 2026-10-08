@@ -5,7 +5,7 @@ const ABOUT = {
   stats: [
     { value: "3+", label: "Years of experience" },
     { value: "5+", label: "Projects" },
-    { value: "5,000+", label: "Users reached" },
+    { value: "500K+", label: "Users reached" },
   ],
   languages: [
     { name: "English", level: "Professional", tone: "accent" },
