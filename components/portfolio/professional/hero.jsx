@@ -134,7 +134,7 @@ export default function Hero() {
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-pf-green opacity-40 motion-reduce:hidden" />
               <span className="relative inline-flex size-2 rounded-full bg-pf-green" />
             </span>
-            Open to relocation to international-opportunities
+            Open to international opportunities
           </p>
         </div>
 

@@ -23,7 +23,14 @@ function AccessibilityVisual() {
     >
       <div className="relative size-16 shrink-0">
         <svg viewBox="0 0 64 64" className="size-16 -rotate-90" aria-hidden>
-          <circle cx="32" cy="32" r={r} fill="none" strokeWidth="4" className="stroke-pf-border" />
+          <circle
+            cx="32"
+            cy="32"
+            r={r}
+            fill="none"
+            strokeWidth="4"
+            className="stroke-pf-border"
+          />
           <circle
             cx="32"
             cy="32"
@@ -63,7 +70,12 @@ function PriceVisual() {
         <span className="text-lg text-pf-text">₹ 2,099</span>
         <span className="text-xs text-pf-orange">↓ 16%</span>
       </p>
-      <svg viewBox="0 0 140 36" preserveAspectRatio="none" className="mt-2 h-9 w-full" aria-hidden>
+      <svg
+        viewBox="0 0 140 36"
+        preserveAspectRatio="none"
+        className="mt-2 h-9 w-full"
+        aria-hidden
+      >
         <polyline
           points="0,30 18,26 34,28 50,20 66,23 82,14 98,18 114,8 140,4"
           fill="none"
@@ -101,14 +113,18 @@ const CARD_GLOWS = {
 // Warm haze under the pixels, matching each card's glow.
 const CARD_HAZE = {
   accessibility: "",
-  price: "bg-[radial-gradient(ellipse_75%_40%_at_50%_100%,rgb(214_150_70/0.1),transparent_75%)]",
+  price:
+    "bg-[radial-gradient(ellipse_75%_40%_at_50%_100%,rgb(214_150_70/0.1),transparent_75%)]",
   default: "",
 };
 
 // /p1's project copy, checked against each project's public showcase README.
 // Links come from the shared portfolio data so they stay in one place.
 const LINKS = Object.fromEntries(
-  [...PROJECTS, ...SIDE_PROJECTS].map((p) => [p.id, { live: p.live, github: p.github }]),
+  [...PROJECTS, ...SIDE_PROJECTS].map((p) => [
+    p.id,
+    { live: p.live, github: p.github },
+  ]),
 );
 const CARDS = [
   {
@@ -120,10 +136,10 @@ const CARDS = [
       "Scans public web pages in a real browser using Playwright and axe-core, then groups accessibility violations by severity and affected element. Provides accessibility scoring, scan history, and Gemini-powered remediation suggestions, with PDF reporting.",
     challenge:
       "Auditing fully rendered pages in headless Chromium rather than relying on static HTML.",
-    highlights: [
-      "Severity-based issue triage and scan history across projects and pages.",
-      "AI-generated remediation suggestions with structured responses and user-scoped data.",
-    ],
+    // highlights: [
+    //   "Severity-based issue triage and scan history across projects and pages.",
+    //   "AI-generated remediation suggestions with structured responses and user-scoped data.",
+    // ],
     tech: ["Next.js", "Playwright", "axe-core", "Supabase", "Gemini API"],
     visual: "accessibility",
   },
@@ -136,10 +152,10 @@ const CARDS = [
       "Tracks products from their URLs, extracts price and variant information, and records price history. Scheduled checks evaluate target price, tolerance, stock, and variant availability before sending email alerts.",
     challenge:
       "Determining when a price change warrants an alert using target-price, tolerance, and variant-availability rules.",
-    highlights: [
-      "Variant-aware monitoring with price history and product filtering.",
-      "Automated email alerts and user-level data isolation.",
-    ],
+    // highlights: [
+    //   "Variant-aware monitoring with price history and product filtering.",
+    //   "Automated email alerts and user-level data isolation.",
+    // ],
     tech: ["Next.js", "Supabase", "Firecrawl", "PostgreSQL", "Resend"],
     visual: "price",
   },
@@ -178,7 +194,10 @@ function ProjectCard({ project }) {
       />
 
       <div className="relative flex flex-col gap-4 sm:grid sm:grid-cols-[1fr_auto] sm:gap-x-6 sm:gap-y-2">
-        <div data-pixel-clear className="order-1 flex items-center gap-3 sm:order-none sm:col-start-1 sm:row-start-1">
+        <div
+          data-pixel-clear
+          className="order-1 flex items-center gap-3 sm:order-none sm:col-start-1 sm:row-start-1"
+        >
           <span className="rounded-md border border-pf-border px-1.5 py-0.5 font-code text-[11px] text-pf-muted">
             {project.index}
           </span>
@@ -191,12 +210,18 @@ function ProjectCard({ project }) {
         </div>
 
         {Visual && (
-          <div data-pixel-clear className="order-2 sm:order-none sm:col-start-2 sm:row-span-2 sm:row-start-1 sm:w-52">
+          <div
+            data-pixel-clear
+            className="order-2 sm:order-none sm:col-start-2 sm:row-span-2 sm:row-start-1 sm:w-52"
+          >
             <Visual />
           </div>
         )}
 
-        <p data-pixel-clear className="order-3 text-sm text-pf-muted sm:order-none sm:col-start-1 sm:row-start-2 sm:font-display sm:text-[15px] sm:text-pf-text/80">
+        <p
+          data-pixel-clear
+          className="order-3 text-sm text-pf-muted sm:order-none sm:col-start-1 sm:row-start-2 sm:font-display sm:text-[15px] sm:text-pf-text/80"
+        >
           {project.purpose}
         </p>
       </div>
@@ -209,7 +234,10 @@ function ProjectCard({ project }) {
       </p>
 
       {project.challenge && (
-        <p data-pixel-clear className="relative mt-3 text-sm leading-relaxed text-pf-muted">
+        <p
+          data-pixel-clear
+          className="relative mt-3 text-sm leading-relaxed text-pf-muted"
+        >
           <span className="font-code text-[11px] uppercase tracking-[0.16em] text-pf-orange">
             Challenge
           </span>{" "}
@@ -218,16 +246,22 @@ function ProjectCard({ project }) {
       )}
 
       {project.highlights && (
-      <ul data-pixel-clear className="relative mt-3 space-y-1">
-        {project.highlights.map((point) => (
-          <li key={point} className="flex gap-3 text-sm leading-relaxed text-pf-muted">
-            <span aria-hidden className="mt-2 size-1 shrink-0 rounded-full bg-pf-accent" />
-            <span>
-              <RichText text={point} />
-            </span>
-          </li>
-        ))}
-      </ul>
+        <ul data-pixel-clear className="relative mt-3 space-y-1">
+          {project.highlights.map((point) => (
+            <li
+              key={point}
+              className="flex gap-3 text-sm leading-relaxed text-pf-muted"
+            >
+              <span
+                aria-hidden
+                className="mt-2 size-1 shrink-0 rounded-full bg-pf-accent"
+              />
+              <span>
+                <RichText text={point} />
+              </span>
+            </li>
+          ))}
+        </ul>
       )}
 
       <TagList
@@ -237,7 +271,10 @@ function ProjectCard({ project }) {
         className="relative mt-4"
       />
 
-      <div data-pixel-clear className="relative mt-auto flex items-center justify-end gap-4 pt-5 sm:justify-start">
+      <div
+        data-pixel-clear
+        className="relative mt-auto flex items-center justify-end gap-4 pt-5 sm:justify-start"
+      >
         <a
           href={project.live}
           target="_blank"
@@ -259,7 +296,9 @@ function ProjectCard({ project }) {
         >
           <FaGithub aria-hidden className="size-4" />
           Source
-          <span className="sr-only">code for {project.name} (opens in a new tab)</span>
+          <span className="sr-only">
+            code for {project.name} (opens in a new tab)
+          </span>
         </a>
       </div>
     </article>
