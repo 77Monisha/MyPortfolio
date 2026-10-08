@@ -18,7 +18,7 @@ function RepoCard({ project }) {
             rel="noopener noreferrer"
             className="font-code text-sm font-medium text-pf-accent hover:underline"
           >
-            {project.id}
+            {project.name}
             <span className="sr-only"> source on GitHub (opens in a new tab)</span>
           </a>
         </h3>
@@ -28,15 +28,11 @@ function RepoCard({ project }) {
       </div>
 
       <p className="mt-3 text-sm leading-relaxed text-pf-text/85">
-        {project.description}
-      </p>
-      <p className="mt-3 font-code text-xs leading-relaxed text-pf-muted">
-        <span className="text-pf-orange">{"// challenge: "}</span>
-        {project.challenge}
+        {project.repo.purpose}
       </p>
 
       <TopicList
-        items={project.tech}
+        items={project.repo.topics}
         label={`${project.name} technologies`}
         className="mt-4"
       />
