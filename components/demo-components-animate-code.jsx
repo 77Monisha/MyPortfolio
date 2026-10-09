@@ -41,13 +41,13 @@ const monisha = {
 
   systemsBuilt: [
     "Real-time match management system (commentary, stats, scoreboard)",
-    "Secure OTP authentication system supporting 5,000+ users",
+    "Secure OTP authentication system supporting 500K+ users",
     "Admin dashboards & CMS platforms for content and payments",
     "WebRTC-based real-time audio/video calling system"
   ],
 
   impact: {
-    scale: "Handled 5,000+ users across production systems",
+    scale: "Handled 500K+ users across production systems",
     transactions: "Processed 1,000+ payments/month via Razorpay",
     performance: "Reduced API calls by 40% in high-traffic systems",
     optimization: "Improved performance, SEO, and accessibility scores",

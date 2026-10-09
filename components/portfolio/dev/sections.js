@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import { PROJECTS, SIDE_PROJECTS } from "@/lib/portfolio-data";
 
-// Section anchors for the Developer View, shared by the tab bar and the
+// Section anchors for the GitHub-style Professional View, shared by the tab bar and the
 // command palette.
 export const DEV_SECTIONS = [
   { id: "overview", label: "Overview", icon: BookOpen },

@@ -10,6 +10,8 @@ export const metadata = {
   title: "Monisha Chaurasia | Software Engineer Portfolio",
   description:
     "Mid-level software engineer building scalable, accessible, and AI-powered web applications.",
+  // public/favicon.ico holds PNG data, so declare the type for browsers.
+  icons: { icon: { url: "/favicon.ico", type: "image/png" } },
 };
 
 export default function RootLayout({ children }) {
