@@ -78,10 +78,10 @@ const COMMANDS = [
     },
   },
   {
-    id: "professional",
+    id: "developer",
     group: "Actions",
-    label: "Switch to Professional view",
-    keywords: "recruiter view toggle",
+    label: "Switch to Developer view",
+    keywords: "detailed view toggle",
     icon: LayoutTemplate,
     run: ({ router }) => router.push("/p1"),
   },

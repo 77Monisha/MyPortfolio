@@ -4,12 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-// Professional (/p1) is the recruiter-safe default; Developer (/p2) renders
-// the same content as a GitHub-style profile. Each view is its own route, so
-// the toggle is navigation rather than local state.
+// Professional (the GitHub-style profile at /, also served at /p2) is the
+// default; Developer (/p1) is the more detailed alternative. Each view is its
+// own route, so the toggle is navigation rather than local state.
 const VIEWS = [
-  { href: "/p1", label: "Professional" },
-  { href: "/p2", label: "Developer" },
+  { href: "/", label: "Professional", paths: ["/", "/p2"] },
+  { href: "/p1", label: "Developer", paths: ["/p1"] },
 ];
 
 export function ViewToggle({ className, fullWidth = false }) {
@@ -26,7 +26,7 @@ export function ViewToggle({ className, fullWidth = false }) {
     >
       <ul className={cn("flex", fullWidth && "w-full")}>
         {VIEWS.map((view) => {
-          const active = pathname === view.href;
+          const active = view.paths.includes(pathname);
           return (
             <li key={view.href} className={cn(fullWidth && "flex-1")}>
               <Link
