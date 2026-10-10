@@ -9,8 +9,8 @@ import Readme from "./readme";
 import Repositories from "./repositories";
 import SkillsFile from "./skills-file";
 
-// The GitHub-style Professional View. Rendered directly at both / (the
-// homepage) and /p2, so each route re-exports this component and metadata.
+// The GitHub-style Professional View, rendered at / (the homepage), which
+// re-exports this component and metadata.
 export const githubPortfolioMetadata = {
   title: "Monisha Chaurasia — Software Engineer Portfolio",
   description:

@@ -5,7 +5,7 @@ import { ButtonLink, Eyebrow } from "../primitives";
 import { ViewToggle } from "../view-mode";
 import PixelField from "./pixel-field";
 
-// /p1's own terminal (the shared TERMINAL_LINES still drive /p2).
+// /p1's own terminal (the shared TERMINAL_LINES still drive the homepage).
 const TERMINAL_LINES = [
   { cmd: "whoami", value: "monisha-chaurasia" },
   { cmd: "role", value: "software-engineer / frontend" },
