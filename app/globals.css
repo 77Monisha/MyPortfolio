@@ -124,7 +124,7 @@
     scroll-behavior: smooth;
   }
 }
-/* ── Portfolio design system (/, /p1, /p2) ── */
+/* ── Portfolio design system (/, /p1) ── */
 /* Colors are real CSS variables (not inlined) so a view can re-tune them in
    its own scope — see .pf-pro below. */
 @theme {

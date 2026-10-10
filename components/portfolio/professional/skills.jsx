@@ -3,7 +3,7 @@ import { Eyebrow, SectionTitle } from "../primitives";
 import { SKILL_ICONS } from "../skills";
 
 // /p1's skills, synced with the resume (the shared SKILL_GROUPS in
-// lib/portfolio-data still drive /p2).
+// lib/portfolio-data still drive the homepage).
 const SKILL_GROUPS = [
   {
     title: "Languages",
