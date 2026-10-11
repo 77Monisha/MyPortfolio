@@ -1,4 +1,4 @@
-// /p1's About copy (the shared ABOUT in lib/portfolio-data still drives /p2).
+// /p1's About copy (the shared ABOUT in lib/portfolio-data still drives the homepage).
 const ABOUT = {
   intro:
     "I'm a **Software Engineer specialising in frontend development**, building scalable, production-ready applications with React, Next.js, and TypeScript. I enjoy solving complex product challenges, designing reusable UI systems, and improving performance and accessibility. Currently based in India, I'm open to relocation.",

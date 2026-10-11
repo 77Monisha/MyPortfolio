@@ -4,11 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-// Professional (the GitHub-style profile at /, also served at /p2) is the
+// Professional (the GitHub-style profile at /) is the
 // default; Developer (/p1) is the more detailed alternative. Each view is its
 // own route, so the toggle is navigation rather than local state.
 const VIEWS = [
-  { href: "/", label: "Professional", paths: ["/", "/p2"] },
+  { href: "/", label: "Professional", paths: ["/"] },
   { href: "/p1", label: "Developer", paths: ["/p1"] },
 ];
 
