@@ -1,19 +1,13 @@
 import { ArrowUpRight, Download } from "lucide-react";
-import { HERO_STACK, PROFILE } from "@/lib/portfolio-data";
+import {
+  HERO_STACK,
+  P1_TERMINAL_LINES,
+  PROFILE,
+} from "@/lib/portfolio-data";
 import { cn } from "@/lib/utils";
 import { ButtonLink, Eyebrow } from "../primitives";
 import { ViewToggle } from "../view-mode";
 import PixelField from "./pixel-field";
-
-// /p1's own terminal (the shared TERMINAL_LINES still drive the homepage).
-const TERMINAL_LINES = [
-  { cmd: "whoami", value: "monisha-chaurasia" },
-  { cmd: "role", value: "software-engineer / frontend" },
-  { cmd: "experience", value: "3+ years · SDE-II" },
-  { cmd: "core_stack", value: "React · Next.js · TypeScript" },
-  { cmd: "focus", value: "Scalable UI · Product Workflows · Performance" },
-  { cmd: "location", value: "India" },
-];
 
 // On mobile the terminal and stack are trimmed to what reads at a glance.
 const MOBILE_LINES = new Set(["whoami", "experience", "core_stack"]);
@@ -44,7 +38,7 @@ function Terminal() {
         <span className="font-code text-xs text-pf-muted">~/monisha</span>
       </div>
       <dl className="space-y-4 px-5 py-5 font-code text-[13px] leading-relaxed">
-        {TERMINAL_LINES.map((line) => (
+        {P1_TERMINAL_LINES.map((line) => (
           <div
             key={line.cmd}
             className={cn(!MOBILE_LINES.has(line.cmd) && "hidden sm:block")}
