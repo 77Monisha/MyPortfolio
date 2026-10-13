@@ -1,91 +1,7 @@
 import { ICON_MAP } from "@/lib/data";
+import { P1_SKILL_GROUPS } from "@/lib/portfolio-data";
 import { Eyebrow, SectionTitle } from "../primitives";
 import { SKILL_ICONS } from "../skills";
-
-// /p1's skills, synced with the resume (the shared SKILL_GROUPS in
-// lib/portfolio-data still drive the homepage).
-const SKILL_GROUPS = [
-  {
-    title: "Languages",
-    items: [
-      { name: "JavaScript", icon: "javascript" },
-      { name: "TypeScript", icon: "typescript" },
-    ],
-  },
-  {
-    title: "Frontend Development",
-    items: [
-      { name: "React", icon: "react" },
-      { name: "Next.js", icon: "nextjs" },
-      { name: "Tailwind CSS", icon: "tailwind" },
-      { name: "SCSS", icon: "sass" },
-      { name: "ShadCN", icon: "shadcn" },
-      { name: "React Flow", icon: "reactflow" },
-    ],
-  },
-  {
-    title: "State Management & Data",
-    items: [
-      { name: "Redux", icon: "redux" },
-      { name: "Zustand", icon: "zustand" },
-      { name: "TanStack Query", icon: "tanstackquery" },
-      { name: "TanStack Table", icon: "tanstacktable" },
-    ],
-  },
-  {
-    title: "Backend & APIs",
-    items: [
-      { name: "Node.js", icon: "nodejs" },
-      { name: "REST APIs", icon: "api" },
-      { name: "GraphQL", icon: "graphql" },
-      { name: "Supabase", icon: "supabase" },
-      { name: "Prisma", icon: "prisma" },
-    ],
-  },
-  {
-    title: "Testing & Quality",
-    items: [
-      { name: "Playwright", icon: "playwright" },
-      { name: "axe-core", icon: "accessibility" },
-      { name: "Vitest", icon: "vitest" },
-      { name: "Jest", icon: "jest" },
-      { name: "Unit Testing", icon: "unittest" },
-      { name: "Integration Testing", icon: "integrationtest" },
-    ],
-  },
-  {
-    title: "Web Engineering & Tools",
-    items: [
-      { name: "Web Accessibility (a11y)", icon: "accessibility" },
-      { name: "Internationalization (i18n)", icon: "globe" },
-      { name: "Core Web Vitals", icon: "web" },
-      { name: "SEO", icon: "seo" },
-      { name: "Lighthouse", icon: "lighthouse" },
-      { name: "Razorpay", icon: "razorpay" },
-      { name: "Git", icon: "git" },
-      { name: "Postman", icon: "postman" },
-      { name: "Figma", icon: "figma" },
-    ],
-  },
-  {
-    title: "AI & Emerging Tech",
-    items: [
-      { name: "LLMs", icon: "ai" },
-      { name: "Generative AI (GenAI)", icon: "genai" },
-      { name: "Gemini API", icon: "gemini" },
-      { name: "Vector Databases", icon: "vector" },
-      { name: "Firecrawl", icon: "fire" },
-    ],
-  },
-  {
-    title: "DevOps & Automation",
-    items: [
-      { name: "Docker", icon: "docker" },
-      { name: "GitHub Actions", icon: "githubactions" },
-      { name: "CI/CD", icon: "cicd" },
-    ],
-  },
-];
 
 // /p1's icon set first; the home page's map covers the rest (Tailwind, SCSS…).
 function SkillIcon({ icon, className }) {
@@ -163,7 +79,7 @@ export default function Skills() {
         </div>
 
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-[repeat(4,auto)] lg:justify-between">
-          {SKILL_GROUPS.map((group) => (
+          {P1_SKILL_GROUPS.map((group) => (
             <div key={group.title}>
               <h3 className="text-sm font-medium text-pf-text">
                 {group.title}

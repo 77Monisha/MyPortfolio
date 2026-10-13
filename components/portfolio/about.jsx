@@ -1,24 +1,4 @@
-// /p1's About copy (the shared ABOUT in lib/portfolio-data still drives the homepage).
-const ABOUT = {
-  intro:
-    "I'm a **Software Engineer specialising in frontend development**, building scalable, production-ready applications with React, Next.js, and TypeScript. I enjoy solving complex product challenges, designing reusable UI systems, and improving performance and accessibility. Currently based in India, I'm open to relocation.",
-  stats: [
-    { value: "3+", label: "Years of experience" },
-    { value: "5+", label: "Projects" },
-    { value: "500K+", label: "Users reached" },
-  ],
-  languages: [
-    { name: "English", level: "Professional", tone: "accent" },
-    { name: "Hindi", level: "Native", tone: "muted" },
-    { name: "Dutch", level: "Beginner (A1), learning", tone: "orange" },
-  ],
-  learning: [
-    "Advanced TypeScript",
-    "System design and frontend architecture",
-    "Dutch (A1 → A2)",
-    "AI-powered applications and automation",
-  ],
-};
+import { P1_ABOUT } from "@/lib/portfolio-data";
 import { Eyebrow, RichText, SectionTitle } from "./primitives";
 
 const TONES = {
@@ -46,11 +26,11 @@ export default function About() {
 
         <div className="space-y-10">
           <p className="max-w-2xl text-base leading-relaxed text-pf-muted md:text-lg">
-            <RichText text={ABOUT.intro} />
+            <RichText text={P1_ABOUT.intro} />
           </p>
 
           <dl className="grid grid-cols-3 divide-x divide-pf-border rounded-xl border border-pf-border bg-pf-card">
-            {ABOUT.stats.map((stat) => (
+            {P1_ABOUT.stats.map((stat) => (
               <div
                 key={stat.label}
                 className="flex flex-col-reverse gap-1 p-4 md:p-6"
@@ -67,7 +47,7 @@ export default function About() {
             <div className="rounded-xl border border-pf-border bg-pf-card p-5">
               <h3 className="text-sm font-medium text-pf-text">Languages</h3>
               <ul className="mt-4 space-y-2.5 text-[13px]">
-                {ABOUT.languages.map((lang) => (
+                {P1_ABOUT.languages.map((lang) => (
                   <li key={lang.name} className="flex items-center gap-2.5">
                     <span
                       aria-hidden
@@ -84,7 +64,7 @@ export default function About() {
                 Currently learning
               </h3>
               <ul className="mt-4 space-y-2.5 font-code text-xs text-pf-muted">
-                {ABOUT.learning.map((item) => (
+                {P1_ABOUT.learning.map((item) => (
                   <li key={item}>
                     <span aria-hidden className="text-pf-orange">
                       →{" "}
